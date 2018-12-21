@@ -9,4 +9,14 @@
         tools:showIn="@layout/app_bar_home"
         tools:context=".ui.activity.HomeActivity">
 
+    <include
+            android:id="@+id/app_header"
+            layout="@layout/app_header_with_mobile_layout"/>
+    <fragment
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_header"
+            class = "com.anywhere.adelivery.ui.fragment.UserDetailFragment"/>
+
 </android.support.constraint.ConstraintLayout>
