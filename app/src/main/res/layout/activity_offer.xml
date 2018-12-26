@@ -15,9 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/offer_view_pager_layout"
-            app:layout_constraintTop_toBottomOf="@+id/txtSlogan"
-            app:layout_constraintVertical_bias="0.9"
-            tools:layout_editor_absoluteX="0dp"/>
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSlogan"/>
 
     <TextView
             android:text="First Delivery Free \n for you."
@@ -26,12 +27,12 @@
             android:id="@+id/txtFreeDelivery"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="25dp"
             android:gravity="center_horizontal"
             android:textSize="20sp"
             android:textColor="@android:color/black"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPagerLayout"/>
+            app:layout_constraintBottom_toTopOf="@+id/btnScheduleDelivery"/>
 
     <Button
             android:id="@+id/btnScheduleDelivery"
@@ -39,14 +40,13 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="8dp"
             android:background="@color/colorAccent"
-            android:layout_margin="2dp"
+            android:layout_margin="8dp"
             android:textSize="18sp"
             android:text="Schedule your delivery"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_bias="0.9"
             app:layout_constraintTop_toBottomOf="@+id/viewPagerLayout"/>
 
 

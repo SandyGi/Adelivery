@@ -30,6 +30,7 @@ object Versions{
     const val lifecycleCompiler = "1.1.1"
     const val pageIndicatorView = "0.2.0"
     const val glassfishAnnotation = "10.0-b28"
+    const val googleGmsPlayServices = "16.0.0"
 
 
     // Test Library
@@ -65,6 +66,7 @@ object AppDependencies{
     const val okHttpLogger = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
     const val kotlinSupport = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val daggerSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    const val androidSupportDesign = "com.android.support:design:${Versions.supportLibrary}"
     const val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
     const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val androidSupportV13 = "com.android.support:support-v13:${Versions.supportLibrary}"
@@ -74,10 +76,13 @@ object AppDependencies{
     const val androidSupportCardView = "com.android.support:cardview-v7:${Versions.supportLibrary}"
     const val glassfishAnnotation = "org.glassfish:javax.annotation:${Versions.glassfishAnnotation}"
     const val androidSupportAppCompat7 = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
+    const val androidSupportAppCompat4 = "com.android.support:support-v4:${Versions.supportLibrary}"
     const val pageindicatorview = "com.romandanylyk:pageindicatorview:${Versions.pageIndicatorView}@aar"
     const val androidSupportRecyclerView = "com.android.support:recyclerview-v7:${Versions.supportLibrary}"
     const val leakCanaryRelease = "com.squareup.leakcanary:leakcanary-android-no-op:${Versions.leakCanary}"
     const val constraintLayout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
+    const val googleGmsPlayService = "com.google.android.gms:play-services-plus:${Versions.googleGmsPlayServices}"
+    const val androidSupportVectorDrawable = "com.android.support:support-vector-drawable:${Versions.supportLibrary}"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val mockito = "org.mockito:mockito-core:${Versions.mokito}"

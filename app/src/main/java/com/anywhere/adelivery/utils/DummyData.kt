@@ -16,8 +16,8 @@ class DummyData {
             )
             var offerModel2 = OfferModel(
                 12,
-                "ISD Pack 22",
-                "Gulf @ Rs.0.1/sec. US & Canada @ Rs.0.01/sec. Nepal @ Rs.0.2/sec. UK @ Rs.0.01/sec",
+                "ISD Pack 22, I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.",
+                "Gulf @ Rs.0.1/sec. US & Canada @ Rs.0.01/sec. Nepal @ Rs.0.2/sec. UK @ Rs.0.01/sec. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.,I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content. ,I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.,I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.",
                 "http://placehold.it/480x320&text=image2"
             )
             var offerModel3 = OfferModel(
@@ -29,7 +29,7 @@ class DummyData {
             var offerModel4 = OfferModel(
                 14,
                 "Rs. 280 Full Talktime Pack",
-                "Talktime: Rs.280.0. Full TalkTime / Extra TalkTime",
+                "Talktime: Rs.280.0. Full TalkTime / Extra TalkTime. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content..  I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.",
                 "http://placehold.it/480x320&text=image4"
             )
             var offerModel5 = OfferModel(

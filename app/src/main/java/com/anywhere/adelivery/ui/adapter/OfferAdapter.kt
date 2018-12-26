@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.OfferModel
+import com.anywhere.adelivery.utils.CustomPager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_offer.view.*
 import kotlinx.android.synthetic.main.offer_list_layout.view.*
@@ -49,6 +50,7 @@ class OfferAdapter(val context: Context, offerList: ArrayList<OfferModel>) : Pag
 
         var view = layoutInflater!!.inflate(R.layout.offer_list_layout, container, false)
         view.txtOfferDescription.text = offerList!!.get(position).offerDescription
+        view.txtOfferName.text = offerList!!.get(position).offerName
         Glide.with(mContext!!).load(offerList!!.get(position).offerImage).into(view.imgOffer)
         container.addView(view, 0)
         return view
