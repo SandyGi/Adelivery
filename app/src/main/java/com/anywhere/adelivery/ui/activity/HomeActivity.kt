@@ -11,6 +11,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.fragment.*
+import com.anywhere.adelivery.utils.CommonMethod
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar_layout.*
 import kotlinx.android.synthetic.main.header_mobile_layout.*
@@ -40,7 +41,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+//            super.onBackPressed()
+            CommonMethod.showExitDialog(this)
         }
     }
 
@@ -73,4 +75,5 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
+
 }

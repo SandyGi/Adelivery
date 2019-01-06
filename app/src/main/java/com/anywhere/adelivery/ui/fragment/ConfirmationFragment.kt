@@ -38,6 +38,7 @@ class ConfirmationFragment : Fragment() {
         view.btnConfirm.setOnClickListener {
             var intent = Intent(activity, HomeActivity::class.java)
             startActivity(intent)
+            activityContext.finish()
         }
         return view
     }
