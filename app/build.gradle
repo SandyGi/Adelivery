@@ -71,6 +71,7 @@ dependencies {
 
     //Testing lib dependencies
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation AppDependencies.jUnit
     testImplementation AppDependencies.mockito
     androidTestImplementation AppDependencies.mockitoTest

@@ -85,4 +85,56 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_enter_mobile_number">Please enter mobile number</string>
+    <string name="str_my_detail">My Detail</string>
+    <string name="str_my_order">My Order</string>
+    <string name="str_setting">Setting</string>
+    <string name="str_contact_us">Contact Us</string>
+    <string name="str_term_amp_condition"><![CDATA[Term & Condition]]></string>
+    <string name="str_confirmation_detail">Confirmation</string>
+    <string name="str_first_delivery_free_n_for_you">First Delivery Free for you.</string>
+    <string name="str_schedule_your_delivery">Schedule your delivery</string>
+    <string name="str_next">Next</string>
+    <string name="str_we_charge_rs_2_km_min_rs_15_for_single_delivery">We charge Rs. 2/km, min Rs.15 for single
+        delivery
+    </string>
+    <string name="str_full_name">Full Name</string>
+    <string name="str_mobile_number">Mobile Number</string>
+    <string name="str_email_id">Email Id</string>
+    <string name="str_city">City</string>
+    <string name="str_submit">Submit</string>
+    <string name="str_full_name_label">Full Name :</string>
+    <string name="str_mobile_number_label">Mobile Number :</string>
+    <string name="str_email_id_label">Email Id :</string>
+    <string name="str_city_label">City :</string>
+    <string name="str_set_location">Set Location :</string>
+    <string name="str_pick_up_location">Pick up location</string>
+    <string name="str_pick_up">Pick up :</string>
+    <string name="str_drop_location">Drop location</string>
+    <string name="str_drop">Drop :</string>
+    <string name="str_pick_up_location_label">Pick up location :</string>
+    <string name="str_drop_location_label">Drop location :</string>
+    <string name="str_mobile_number_alternate">Mobile Number(Alternate)</string>
+    <string name="str_delivery_date">Delivery date</string>
+    <string name="str_mode_of_payment_cod">Mode of Payment : COD</string>
+    <string name="str_submit_detail">Submit Detail</string>
+    <string name="str_detail_of_delivery">Detail of Delivery</string>
+    <string name="str_resend_otp">Resend OTP</string>
+    <string name="str_enter_otp">Enter OTP :</string>
+    <string name="str_enter_otp_hint">Enter OTP</string>
+    <string name="str_confirm">Confirm ?</string>
+    <string name="str_my_order_label">My Order :</string>
+    <string name="str_order_detail">Order Detail</string>
+    <string name="str_excepted_delivered">Excepted Delivered :</string>
+    <string name="str_amount_to_pay">Amount to pay:</string>
+    <string name="str_2_x_distance_travel_x_2">2 X Distance travel X 2</string>
+    <string name="str_order_delivered">Order Delivered</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_contact_us_will_have_mobile_number_and_email_address">Contact us will have mobile number and email
+        address :
+    </string>
+    <string name="str_johnk_gmail_com">johnk@gmail.com</string>
+    <string name="str_help">To see previous or current schedule delivery, user need to enter mobile number or email
+        address the he will receive OTP and the able to track delivery\'s.
+    </string>
+    <string name="str_adelivery_gmail_com">adelivery@gmail.com</string>
 </resources>

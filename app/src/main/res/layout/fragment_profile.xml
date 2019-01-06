@@ -1,0 +1,121 @@
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.fragment.ProfileFragment">
+    <include
+            android:id="@+id/app_header"
+            layout="@layout/header_mobile_layout"/>
+    <TextView
+            android:id="@+id/txtFullNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_full_name_label"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+            android:id="@+id/txtFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_full_name"
+            app:layout_constraintStart_toEndOf="@id/txtFullNameLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
+            android:text="John Katharine"
+            android:layout_marginEnd="10dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.15"/>
+    <TextView
+            android:id="@+id/txtMobileLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_mobile_number_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/txtFullName"/>
+    <TextView
+            android:id="@+id/txtMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_mobile_number"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="8956975632"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/txtMobileLabel"
+            app:layout_constraintTop_toBottomOf="@+id/txtFullName"/>
+
+    <TextView
+            android:id="@+id/txtEmailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_email_id_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/txtMobile"/>
+    <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_email_id"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="johnk@gmail.com"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/txtEmailLabel"
+            app:layout_constraintTop_toBottomOf="@+id/txtMobile"/>
+
+
+    <TextView
+            android:id="@+id/txtCityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_city_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmailLabel"/>
+    <TextView
+            android:id="@+id/txtCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_city"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:text="Pune, Maharstra"
+            android:textSize="15sp"
+            android:layout_marginEnd="10dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/txtCityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmailLabel"/>
+
+    <include layout="@layout/charges_layout"/>
+
+</android.support.constraint.ConstraintLayout>

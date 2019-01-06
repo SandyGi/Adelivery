@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.utils
 
+import com.anywhere.adelivery.data.model.MyOrderListModel
 import com.anywhere.adelivery.data.model.OfferModel
 
 class DummyData {
@@ -46,6 +47,61 @@ class DummyData {
             offerList.add(offerModel5)
 
             return offerList
+        }
+
+        fun dummyOrderList(): ArrayList<MyOrderListModel> {
+            var myOrderList = ArrayList<MyOrderListModel>()
+            var myOrderListModel1 = MyOrderListModel(1, "7985461356", "Delivered")
+            var myOrderListModel2 = MyOrderListModel(2, "7985461356", "Cancel")
+            var myOrderListModel3 = MyOrderListModel(3, "7985461356", "Scheduled")
+            var myOrderListModel4 = MyOrderListModel(4, "7985461356", "Scheduled")
+            var myOrderListModel5 = MyOrderListModel(5, "7985461356", "Delivered")
+            var myOrderListModel6 = MyOrderListModel(6, "7985461356", "Cancel")
+            var myOrderListModel7 = MyOrderListModel(7, "7985461356", "Scheduled")
+            var myOrderListModel8 = MyOrderListModel(8, "7985461356", "Scheduled")
+            var myOrderListModel9 = MyOrderListModel(9, "7985461356", "Cancel")
+            var myOrderListModel10 = MyOrderListModel(10, "7985461356", "Delivered")
+            var myOrderListModel11 = MyOrderListModel(11, "7985461356", "Scheduled")
+            var myOrderListModel12 = MyOrderListModel(12, "7985461356", "Cancel")
+            var myOrderListModel13 = MyOrderListModel(13, "7985461356", "Delivered")
+            var myOrderListModel14 = MyOrderListModel(14, "7985461356", "Scheduled")
+            var myOrderListModel15 = MyOrderListModel(15, "7985461356", "Scheduled")
+            var myOrderListModel16 = MyOrderListModel(16, "7985461356", "Cancel")
+            var myOrderListModel17 = MyOrderListModel(17, "7985461356", "Delivered")
+            var myOrderListModel18 = MyOrderListModel(18, "7985461356", "Scheduled")
+            var myOrderListModel19 = MyOrderListModel(19, "7985461356", "Cancel")
+            var myOrderListModel20 = MyOrderListModel(20, "7985461356", "Delivered")
+            var myOrderListModel21 = MyOrderListModel(21, "7985461356", "Scheduled")
+            var myOrderListModel22 = MyOrderListModel(22, "7985461356", "Delivered")
+            var myOrderListModel23 = MyOrderListModel(23, "7985461356", "Scheduled")
+            var myOrderListModel24 = MyOrderListModel(24, "7985461356", "Cancel")
+
+            myOrderList.add(myOrderListModel1)
+            myOrderList.add(myOrderListModel2)
+            myOrderList.add(myOrderListModel3)
+            myOrderList.add(myOrderListModel4)
+            myOrderList.add(myOrderListModel5)
+            myOrderList.add(myOrderListModel6)
+            myOrderList.add(myOrderListModel7)
+            myOrderList.add(myOrderListModel8)
+            myOrderList.add(myOrderListModel9)
+            myOrderList.add(myOrderListModel10)
+            myOrderList.add(myOrderListModel11)
+            myOrderList.add(myOrderListModel12)
+            myOrderList.add(myOrderListModel13)
+            myOrderList.add(myOrderListModel14)
+            myOrderList.add(myOrderListModel15)
+            myOrderList.add(myOrderListModel16)
+            myOrderList.add(myOrderListModel17)
+            myOrderList.add(myOrderListModel18)
+            myOrderList.add(myOrderListModel19)
+            myOrderList.add(myOrderListModel20)
+            myOrderList.add(myOrderListModel21)
+            myOrderList.add(myOrderListModel22)
+            myOrderList.add(myOrderListModel23)
+            myOrderList.add(myOrderListModel24)
+
+            return myOrderList
         }
     }
 }

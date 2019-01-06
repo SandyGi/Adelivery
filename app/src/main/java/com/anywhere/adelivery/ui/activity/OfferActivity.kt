@@ -1,10 +1,12 @@
 package com.anywhere.adelivery.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
+import android.view.View.GONE
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.anywhere.adelivery.R
@@ -12,6 +14,7 @@ import com.anywhere.adelivery.ui.adapter.OfferAdapter
 import com.anywhere.adelivery.utils.Customization
 import com.anywhere.adelivery.utils.DummyData
 import kotlinx.android.synthetic.main.activity_offer.*
+import kotlinx.android.synthetic.main.app_header_layout.*
 import kotlinx.android.synthetic.main.offer_view_pager_layout.*
 import java.util.*
 
@@ -29,6 +32,7 @@ class OfferActivity : AppCompatActivity() {
 
     private fun init() {
 
+        txtMobileNumber.visibility = GONE
         vpOffer.adapter = OfferAdapter(this@OfferActivity, DummyData.getOfferList())
 
         pageIndicatorView.setViewPager(vpOffer)
@@ -56,8 +60,7 @@ class OfferActivity : AppCompatActivity() {
         }, 2000, 3000)
 
         btnScheduleDelivery.setOnClickListener {
-            //            var intent = Intent(this, HomeActivity::class.java)
-//            startActivity(intent)
+
             var layoutInflater = LayoutInflater.from(this)
             var view = layoutInflater.inflate(R.layout.custom_edt_dialog, null)
 
@@ -65,15 +68,13 @@ class OfferActivity : AppCompatActivity() {
             alertDialog.setView(view)
 
             alertDialog.setCancelable(false)
-                .setPositiveButton("Send") { dialog, which ->
-                    Toast.makeText(
-                        applicationContext,
-                        android.R.string.yes, Toast.LENGTH_SHORT
-                    ).show()
+                .setPositiveButton("Next") { dialog, which ->
+                    var intent = Intent(this, RegistrationActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(applicationContext, android.R.string.yes, Toast.LENGTH_SHORT).show()
                 }
                 .setNegativeButton("Cancel") { dialog, which ->
-                    Toast.makeText(this, "Click on cancel", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(applicationContext, "Click on cancel", Toast.LENGTH_SHORT).show()
                 }
             alertDialog.show()
 

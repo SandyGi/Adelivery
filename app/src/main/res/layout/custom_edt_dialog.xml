@@ -6,12 +6,12 @@
               android:orientation="vertical"
               android:padding="16dp">
 
-    <TextView
+    <ImageView
             android:id="@+id/dialogTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Dialog Title"
+            android:layout_height="45dp"
+            android:textColor="@android:color/black"
+            android:src="@drawable/app_logo"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <EditText
@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:lines="1"
             android:maxLength="10"
-
             android:hint="@string/str_enter_mobile_number"
             android:inputType="number"/>
 </LinearLayout>

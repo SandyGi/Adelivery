@@ -1,8 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
-
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -11,16 +9,9 @@ import android.view.ViewGroup
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.ui.activity.RegistrationActivity
-import kotlinx.android.synthetic.main.fragment_confirmation.view.*
+import kotlinx.android.synthetic.main.fragment_submit.view.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ConfirmationFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
-class ConfirmationFragment : Fragment() {
-
+class SubmitFragment : Fragment() {
 
     private var activityContext = RegistrationActivity()
 
@@ -28,24 +19,21 @@ class ConfirmationFragment : Fragment() {
         super.onAttach(context)
         this.activityContext = context as RegistrationActivity
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_confirmation, container, false)
-        view.btnConfirm.setOnClickListener {
-            var intent = Intent(activity, HomeActivity::class.java)
-            startActivity(intent)
+        val view = inflater.inflate(R.layout.fragment_submit, container, false)
+        view.btnSubmit.setOnClickListener {
+            activityContext.displaySelectedScreen(activityContext.CONFIRMATION_FRAGMENT)
         }
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity!!.title = activity!!.getString(R.string.str_confirmation_detail)
-
+//        activity!!.title = activity!!.getString(R.string.str_submit_detail)
     }
 
-}
+}// Required empty public constructor

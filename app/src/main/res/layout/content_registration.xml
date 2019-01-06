@@ -11,7 +11,7 @@
 
     <include
             android:id="@+id/app_header"
-            layout="@layout/header_mobile_layout"/>
+            layout="@layout/app_header_layout"/>
 
         <FrameLayout
                 android:id="@+id/container"

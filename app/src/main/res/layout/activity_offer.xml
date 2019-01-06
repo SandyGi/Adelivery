@@ -17,11 +17,10 @@
             layout="@layout/offer_view_pager_layout"
             app:layout_constraintVertical_bias="0.5"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtSlogan"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-            android:text="First Delivery Free \n for you."
+            android:text="@string/str_first_delivery_free_n_for_you"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtFreeDelivery"
@@ -43,7 +42,7 @@
             android:background="@color/colorAccent"
             android:layout_margin="8dp"
             android:textSize="18sp"
-            android:text="Schedule your delivery"
+            android:text="@string/str_schedule_your_delivery"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.9"

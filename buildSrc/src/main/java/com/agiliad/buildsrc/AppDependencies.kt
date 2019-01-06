@@ -3,7 +3,7 @@ package com.agiliad.buildsrc
 object Versions{
 
     // Android
-    const val androidMinSdk = 16
+    const val androidMinSdk = 18
     const val androidTargetSdk = 28
     const val androidCompileSdk = 28
 
