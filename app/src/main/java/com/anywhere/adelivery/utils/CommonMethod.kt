@@ -2,10 +2,8 @@ package com.anywhere.adelivery.utils
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
-import com.anywhere.adelivery.ui.activity.RegistrationActivity
 
 class CommonMethod {
     companion object {
@@ -15,15 +13,15 @@ class CommonMethod {
 
         fun showExitDialog(context: Activity) {
 
-            var alertDialog = AlertDialog.Builder(context)
+            val alertDialog = AlertDialog.Builder(context)
             alertDialog.setMessage("Do you want to exit from application?")
 
             alertDialog.setCancelable(false)
-                .setPositiveButton("Yes") { dialog, which ->
+                .setPositiveButton(android.R.string.yes) { _, _ ->
                     context.finish()
                 }
-                .setNegativeButton("No") { dialog, which ->
-                   dialog.dismiss()
+                .setNegativeButton(android.R.string.no) { dialog, _ ->
+                    dialog.dismiss()
                 }
             alertDialog.show()
         }

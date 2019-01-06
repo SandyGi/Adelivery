@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
         displaySelectedScreen(R.id.nav_my_order)
-//        txtMobileNumber.visibility = GONE
     }
 
     override fun onBackPressed() {

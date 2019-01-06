@@ -48,8 +48,8 @@ class OfferAdapter(val context: Context, offerList: ArrayList<OfferModel>) : Pag
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
-        var view = layoutInflater!!.inflate(R.layout.offer_list_layout, container, false)
-        view.txtOfferDescription.text = offerList!!.get(position).offerDescription
+        val view = layoutInflater!!.inflate(R.layout.offer_list_layout, container, false)
+        view.txtOfferDescription.text = offerList!![position].offerDescription
         view.txtOfferName.text = offerList!!.get(position).offerName
         Glide.with(mContext!!).load(offerList!!.get(position).offerImage).into(view.imgOffer)
         container.addView(view, 0)

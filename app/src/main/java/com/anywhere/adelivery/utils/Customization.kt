@@ -17,11 +17,11 @@ class Customization : Parcelable {
     var isAutoVisibility = true
     var isFadeOnIdle = false
 
-    override fun equals(o: Any?): Boolean {
-        if (this === o) return true
-        if (o == null || javaClass != o.javaClass) return false
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
 
-        val that = o as Customization?
+        val that = other as Customization?
 
         if (isInteractiveAnimation != that!!.isInteractiveAnimation) return false
         if (isAutoVisibility != that.isAutoVisibility) return false
@@ -33,7 +33,7 @@ class Customization : Parcelable {
 
     override fun hashCode(): Int {
         var result = if (animationType != null) animationType!!.hashCode() else 0
-        result = 31 * result + if (orientation != null) orientation!!.hashCode() else 0
+        result = 31 * result + orientation.hashCode()
         result = 31 * result + if (rtlMode != null) rtlMode!!.hashCode() else 0
         result = 31 * result + if (isInteractiveAnimation) 1 else 0
         result = 31 * result + if (isAutoVisibility) 1 else 0
@@ -47,7 +47,7 @@ class Customization : Parcelable {
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeInt(if (this.animationType == null) -1 else this.animationType!!.ordinal)
-        dest.writeInt(if (this.orientation == null) -1 else this.orientation!!.ordinal)
+        dest.writeInt(this.orientation.ordinal)
         dest.writeInt(if (this.rtlMode == null) -1 else this.rtlMode!!.ordinal)
         dest.writeByte(if (this.isInteractiveAnimation) 1.toByte() else 0.toByte())
         dest.writeByte(if (this.isAutoVisibility) 1.toByte() else 0.toByte())

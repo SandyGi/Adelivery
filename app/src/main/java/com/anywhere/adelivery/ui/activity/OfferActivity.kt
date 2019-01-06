@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -30,6 +31,7 @@ class OfferActivity : AppCompatActivity() {
         init()
     }
 
+    @SuppressLint("InflateParams")
     private fun init() {
 
         txtMobileNumber.visibility = GONE
@@ -61,19 +63,19 @@ class OfferActivity : AppCompatActivity() {
 
         btnScheduleDelivery.setOnClickListener {
 
-            var layoutInflater = LayoutInflater.from(this)
-            var view = layoutInflater.inflate(R.layout.custom_edt_dialog, null)
+            val layoutInflater = LayoutInflater.from(this)
+            val view = layoutInflater.inflate(R.layout.custom_edt_dialog, null)
 
-            var alertDialog = AlertDialog.Builder(this)
+            val alertDialog = AlertDialog.Builder(this)
             alertDialog.setView(view)
 
             alertDialog.setCancelable(false)
-                .setPositiveButton("Next") { dialog, which ->
-                    var intent = Intent(this, RegistrationActivity::class.java)
+                .setPositiveButton("Next") { _, _ ->
+                    val intent = Intent(this, RegistrationActivity::class.java)
                     startActivity(intent)
                     Toast.makeText(applicationContext, android.R.string.yes, Toast.LENGTH_SHORT).show()
                 }
-                .setNegativeButton("Cancel") { dialog, which ->
+                .setNegativeButton("Cancel") { _, _ ->
                     Toast.makeText(applicationContext, "Click on cancel", Toast.LENGTH_SHORT).show()
                 }
             alertDialog.show()

@@ -8,32 +8,32 @@ class DummyData {
     companion object {
 
         public fun getOfferList(): ArrayList<OfferModel> {
-            var offerList = ArrayList<OfferModel>()
-            var offerModel1 = OfferModel(
+            val offerList = ArrayList<OfferModel>()
+            val offerModel1 = OfferModel(
                 11,
                 "100 MB Combo 3G / 4G Data Pack",
                 "3G/4G Data: 100 MB, extra @Rs.0.04/10KB. Local & STD Calls: Unlimited. Roaming Outgoing: Unlimited. All SMS: 100 SMS. Not for Commercial Activity",
                 "http://placehold.it/480x320&text=image1"
             )
-            var offerModel2 = OfferModel(
+            val offerModel2 = OfferModel(
                 12,
                 "ISD Pack 22, I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.",
                 "Gulf @ Rs.0.1/sec. US & Canada @ Rs.0.01/sec. Nepal @ Rs.0.2/sec. UK @ Rs.0.01/sec. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.,I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content. ,I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.,I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.",
                 "http://placehold.it/480x320&text=image2"
             )
-            var offerModel3 = OfferModel(
+            val offerModel3 = OfferModel(
                 13,
                 "1 GB Combo 3G / 4G Data Pack",
                 "3G/4G Data: 1 GB, extra @Rs.0.04/10KB. Local & STD Calls: Unlimited. Roaming Outgoing: Unlimited. All SMS (100 SMS/Day): 2800 SMS. Not for Commercial Activity",
                 "http://placehold.it/480x680&text=image3"
             )
-            var offerModel4 = OfferModel(
+            val offerModel4 = OfferModel(
                 14,
                 "Rs. 280 Full Talktime Pack",
                 "Talktime: Rs.280.0. Full TalkTime / Extra TalkTime. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.. I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content..  I think they didn't intend for wrap content to be supported as I don't think they thought it was a normal use case. To support it we have to re measure our selves after our children are measured so we can wrap content.",
                 "http://placehold.it/480x320&text=image4"
             )
-            var offerModel5 = OfferModel(
+            val offerModel5 = OfferModel(
                 15,
                 "Rs. 90 Full Talktime Pack",
                 "Local Airtel to Airtel: 2 SMS, Valid for 1 day. Promotional/Bonus Talktime: Rs.52.0, Valid for 5 days",
@@ -50,31 +50,31 @@ class DummyData {
         }
 
         fun dummyOrderList(): ArrayList<MyOrderListModel> {
-            var myOrderList = ArrayList<MyOrderListModel>()
-            var myOrderListModel1 = MyOrderListModel(1, "7985461356", "Delivered")
-            var myOrderListModel2 = MyOrderListModel(2, "7985461356", "Cancel")
-            var myOrderListModel3 = MyOrderListModel(3, "7985461356", "Scheduled")
-            var myOrderListModel4 = MyOrderListModel(4, "7985461356", "Scheduled")
-            var myOrderListModel5 = MyOrderListModel(5, "7985461356", "Delivered")
-            var myOrderListModel6 = MyOrderListModel(6, "7985461356", "Cancel")
-            var myOrderListModel7 = MyOrderListModel(7, "7985461356", "Scheduled")
-            var myOrderListModel8 = MyOrderListModel(8, "7985461356", "Scheduled")
-            var myOrderListModel9 = MyOrderListModel(9, "7985461356", "Cancel")
-            var myOrderListModel10 = MyOrderListModel(10, "7985461356", "Delivered")
-            var myOrderListModel11 = MyOrderListModel(11, "7985461356", "Scheduled")
-            var myOrderListModel12 = MyOrderListModel(12, "7985461356", "Cancel")
-            var myOrderListModel13 = MyOrderListModel(13, "7985461356", "Delivered")
-            var myOrderListModel14 = MyOrderListModel(14, "7985461356", "Scheduled")
-            var myOrderListModel15 = MyOrderListModel(15, "7985461356", "Scheduled")
-            var myOrderListModel16 = MyOrderListModel(16, "7985461356", "Cancel")
-            var myOrderListModel17 = MyOrderListModel(17, "7985461356", "Delivered")
-            var myOrderListModel18 = MyOrderListModel(18, "7985461356", "Scheduled")
-            var myOrderListModel19 = MyOrderListModel(19, "7985461356", "Cancel")
-            var myOrderListModel20 = MyOrderListModel(20, "7985461356", "Delivered")
-            var myOrderListModel21 = MyOrderListModel(21, "7985461356", "Scheduled")
-            var myOrderListModel22 = MyOrderListModel(22, "7985461356", "Delivered")
-            var myOrderListModel23 = MyOrderListModel(23, "7985461356", "Scheduled")
-            var myOrderListModel24 = MyOrderListModel(24, "7985461356", "Cancel")
+            val myOrderList = ArrayList<MyOrderListModel>()
+            val myOrderListModel1 = MyOrderListModel(1, "7985461356", "Delivered")
+            val myOrderListModel2 = MyOrderListModel(2, "7985461356", "Cancel")
+            val myOrderListModel3 = MyOrderListModel(3, "7985461356", "Scheduled")
+            val myOrderListModel4 = MyOrderListModel(4, "7985461356", "Scheduled")
+            val myOrderListModel5 = MyOrderListModel(5, "7985461356", "Delivered")
+            val myOrderListModel6 = MyOrderListModel(6, "7985461356", "Cancel")
+            val myOrderListModel7 = MyOrderListModel(7, "7985461356", "Scheduled")
+            val myOrderListModel8 = MyOrderListModel(8, "7985461356", "Scheduled")
+            val myOrderListModel9 = MyOrderListModel(9, "7985461356", "Cancel")
+            val myOrderListModel10 = MyOrderListModel(10, "7985461356", "Delivered")
+            val myOrderListModel11 = MyOrderListModel(11, "7985461356", "Scheduled")
+            val myOrderListModel12 = MyOrderListModel(12, "7985461356", "Cancel")
+            val myOrderListModel13 = MyOrderListModel(13, "7985461356", "Delivered")
+            val myOrderListModel14 = MyOrderListModel(14, "7985461356", "Scheduled")
+            val myOrderListModel15 = MyOrderListModel(15, "7985461356", "Scheduled")
+            val myOrderListModel16 = MyOrderListModel(16, "7985461356", "Cancel")
+            val myOrderListModel17 = MyOrderListModel(17, "7985461356", "Delivered")
+            val myOrderListModel18 = MyOrderListModel(18, "7985461356", "Scheduled")
+            val myOrderListModel19 = MyOrderListModel(19, "7985461356", "Cancel")
+            val myOrderListModel20 = MyOrderListModel(20, "7985461356", "Delivered")
+            val myOrderListModel21 = MyOrderListModel(21, "7985461356", "Scheduled")
+            val myOrderListModel22 = MyOrderListModel(22, "7985461356", "Delivered")
+            val myOrderListModel23 = MyOrderListModel(23, "7985461356", "Scheduled")
+            val myOrderListModel24 = MyOrderListModel(24, "7985461356", "Cancel")
 
             myOrderList.add(myOrderListModel1)
             myOrderList.add(myOrderListModel2)
