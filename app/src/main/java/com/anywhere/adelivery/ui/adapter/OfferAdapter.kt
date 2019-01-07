@@ -50,8 +50,8 @@ class OfferAdapter(val context: Context, offerList: ArrayList<OfferModel>) : Pag
 
         val view = layoutInflater!!.inflate(R.layout.offer_list_layout, container, false)
         view.txtOfferDescription.text = offerList!![position].offerDescription
-        view.txtOfferName.text = offerList!!.get(position).offerName
-        Glide.with(mContext!!).load(offerList!!.get(position).offerImage).into(view.imgOffer)
+        view.txtOfferName.text = offerList!![position].offerName
+        Glide.with(mContext!!).load(offerList!![position].offerImage).into(view.imgOffer)
         container.addView(view, 0)
         return view
     }
