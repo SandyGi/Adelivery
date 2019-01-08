@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:maxLength="10"
-                android:inputType="number"
+                android:inputType="phone"
                 android:hint="@string/str_mobile_number_alternate"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -146,6 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
+                android:focusable="false"
                 android:inputType="date"
                 android:hint="@string/str_delivery_date"/>
 

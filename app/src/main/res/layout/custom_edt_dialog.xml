@@ -21,5 +21,5 @@
             android:lines="1"
             android:maxLength="10"
             android:hint="@string/str_enter_mobile_number"
-            android:inputType="number"/>
+            android:inputType="phone"/>
 </LinearLayout>

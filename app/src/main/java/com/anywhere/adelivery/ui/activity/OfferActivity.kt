@@ -16,6 +16,7 @@ import com.anywhere.adelivery.utils.Customization
 import com.anywhere.adelivery.utils.DummyData
 import kotlinx.android.synthetic.main.activity_offer.*
 import kotlinx.android.synthetic.main.app_header_layout.*
+import kotlinx.android.synthetic.main.custom_edt_dialog.view.*
 import kotlinx.android.synthetic.main.offer_view_pager_layout.*
 import java.util.*
 
@@ -71,12 +72,17 @@ class OfferActivity : AppCompatActivity() {
 
             alertDialog.setCancelable(false)
                 .setPositiveButton("Next") { _, _ ->
-                    val intent = Intent(this, RegistrationActivity::class.java)
-                    startActivity(intent)
-                    Toast.makeText(applicationContext, android.R.string.yes, Toast.LENGTH_SHORT).show()
+                    if (!view.userInputDialog.text.equals("") && view.userInputDialog.length()== 10){
+                        val intent = Intent(this, RegistrationActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }else{
+                        Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
                 .setNegativeButton("Cancel") { _, _ ->
-                    Toast.makeText(applicationContext, "Click on cancel", Toast.LENGTH_SHORT).show()
+
                 }
             alertDialog.show()
 
