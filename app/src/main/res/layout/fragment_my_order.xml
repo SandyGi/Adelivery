@@ -28,4 +28,12 @@
             app:layout_constraintTop_toBottomOf="@+id/txtLabel"
             android:layout_marginTop="10dp"/>
 
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabScheduleDelivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_plus"
+            android:layout_margin="16dp" />
 </android.support.constraint.ConstraintLayout>
