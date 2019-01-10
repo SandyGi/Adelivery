@@ -80,7 +80,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="str_slogan">Anytime, Anything, Anywhere</string>
-    <string name="str_mobile_no">Mobile No: 8965975632</string>
+    <string name="str_mobile_no">8965975632</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -91,7 +91,7 @@
     <string name="str_contact_us">Contact Us</string>
     <string name="str_term_amp_condition"><![CDATA[Term & Condition]]></string>
     <string name="str_confirmation_detail">Confirmation</string>
-    <string name="str_first_delivery_free_n_for_you">First Delivery Free for you.</string>
+    <string name="str_first_delivery_free_n_for_you">First Delivery Free\n for you.</string>
     <string name="str_schedule_your_delivery">Schedule your delivery</string>
     <string name="str_next">Next</string>
     <string name="str_we_charge_rs_2_km_min_rs_15_for_single_delivery">We charge Rs. 2/km, min Rs.15 for single

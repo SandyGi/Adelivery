@@ -35,5 +35,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:src="@drawable/ic_plus"
+            app:elevation="5dp"
             android:layout_margin="16dp" />
 </android.support.constraint.ConstraintLayout>

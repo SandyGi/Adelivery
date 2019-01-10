@@ -15,6 +15,7 @@ import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.ui.adapter.BaseAdapter
 import com.anywhere.adelivery.utils.DummyData
 import kotlinx.android.synthetic.main.fragment_my_order.*
+import kotlinx.android.synthetic.main.fragment_my_order.view.*
 import kotlinx.android.synthetic.main.my_order_list.view.*
 
 class MyOrderFragment : Fragment() {
@@ -32,7 +33,7 @@ class MyOrderFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_order, container, false)
-        fabScheduleDelivery.setOnClickListener{
+        view.fabScheduleDelivery.setOnClickListener{
 
         }
         setOrderList(view)

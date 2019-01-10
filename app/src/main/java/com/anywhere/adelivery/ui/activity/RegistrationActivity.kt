@@ -9,7 +9,7 @@ import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.fragment.ConfirmationFragment
 import com.anywhere.adelivery.ui.fragment.MyDetailFragment
 import com.anywhere.adelivery.ui.fragment.MyOrderFragment
-import com.anywhere.adelivery.ui.fragment.SubmitFragment
+import com.anywhere.adelivery.ui.fragment.ScheduleDeliveryFragment
 import kotlinx.android.synthetic.main.app_header_layout.*
 
 class RegistrationActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class RegistrationActivity : AppCompatActivity() {
         val fragment: Fragment = when (position) {
             R.id.nav_my_detail -> MyDetailFragment()
             R.id.nav_my_order -> MyOrderFragment()
-            SUBMIT_FRAGMENT -> SubmitFragment()
+            SUBMIT_FRAGMENT -> ScheduleDeliveryFragment()
             CONFIRMATION_FRAGMENT -> ConfirmationFragment()
             else -> MyDetailFragment()
 

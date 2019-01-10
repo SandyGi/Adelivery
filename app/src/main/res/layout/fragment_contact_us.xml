@@ -7,45 +7,35 @@
         tools:context=".ui.fragment.MyDetailFragment">
 
     <TextView
-            android:id="@+id/txtContactLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_contact_us_will_have_mobile_number_and_email_address"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.10"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="15sp"
-            android:layout_margin="15dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintLeft_toLeftOf="parent"/>
-
-    <TextView
             android:id="@+id/txtMobileLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_mobile_number_label"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintVertical_bias="0.10"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
-            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:textSize="15sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txtContactLabel"/>
+            android:textColor="@android:color/black"/>
     <TextView
             android:id="@+id/txtMobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/str_mobile_number"
             android:textSize="15sp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
+            app:layout_constraintVertical_bias="0.10"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginEnd="10dp"
             android:text="9021580768"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@id/txtMobileLabel"
-            app:layout_constraintTop_toBottomOf="@+id/txtContactLabel"/>
+            app:layout_constraintStart_toEndOf="@id/txtMobileLabel"/>
 
     <TextView
             android:id="@+id/txtEmailLabel"
@@ -55,7 +45,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:textSize="15sp"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/txtMobile"/>
@@ -65,7 +55,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/str_email_id"
             android:textSize="15sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:text="@string/str_adelivery_gmail_com"
@@ -73,16 +63,4 @@
             app:layout_constraintStart_toEndOf="@id/txtEmailLabel"
             app:layout_constraintTop_toBottomOf="@+id/txtMobile"/>
 
-    <TextView
-            android:id="@+id/txtHelpLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_help"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            android:layout_margin="15dp"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmailLabel"/>
 </android.support.constraint.ConstraintLayout>

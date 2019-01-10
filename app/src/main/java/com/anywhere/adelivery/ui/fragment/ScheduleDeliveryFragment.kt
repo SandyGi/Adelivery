@@ -9,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.activity.RegistrationActivity
-import kotlinx.android.synthetic.main.fragment_order_detail.view.*
-import kotlinx.android.synthetic.main.fragment_submit.*
-import kotlinx.android.synthetic.main.fragment_submit.view.*
+import kotlinx.android.synthetic.main.fragment_schedule_delivery.*
+import kotlinx.android.synthetic.main.fragment_schedule_delivery.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SubmitFragment : Fragment() {
+class ScheduleDeliveryFragment : Fragment() {
 
     private var activityContext = RegistrationActivity()
 
@@ -30,7 +29,7 @@ class SubmitFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_submit, container, false)
+        val view = inflater.inflate(R.layout.fragment_schedule_delivery, container, false)
         val calendar = Calendar.getInstance()
         val date = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // TODO Auto-generated method stub

@@ -7,14 +7,11 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.fragment.*
 import com.anywhere.adelivery.utils.CommonMethod
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar_layout.*
-import kotlinx.android.synthetic.main.header_mobile_layout.*
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,10 +55,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragment: Fragment = when (position) {
             R.id.nav_my_detail -> ProfileFragment()
             R.id.nav_my_order -> MyOrderFragment()
-            R.id.nav_setting -> SettingFragment()
             R.id.nav_contact_us -> ContactUsFragment()
             R.id.nav_term_condition -> TermAndConditionFragment()
-            SUBMIT_FRAGMENT -> SubmitFragment()
+            SUBMIT_FRAGMENT -> ScheduleDeliveryFragment()
             CONFIRMATION_FRAGMENT -> ConfirmationFragment()
             ORDER_DETAIL_FRAGMENT -> OrderDetailFragment()
             else -> MyOrderFragment()

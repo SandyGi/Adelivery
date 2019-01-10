@@ -75,7 +75,6 @@ class OfferActivity : AppCompatActivity() {
                     if (!view.userInputDialog.text.equals("") && view.userInputDialog.length()== 10){
                         val intent = Intent(this, RegistrationActivity::class.java)
                         startActivity(intent)
-                        finish()
                     }else{
                         Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
                     }
