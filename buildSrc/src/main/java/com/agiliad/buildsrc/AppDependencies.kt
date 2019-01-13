@@ -23,6 +23,7 @@ object Versions{
     const val lifecycle = "1.1.1"
     const val rxAndroid = "2.1.0"
     const val javaxInject = "1"
+    const val rxjavaVersion = "1.0.10"
     const val leakCanary = "1.6.2"
     const val supportLibrary = "28.0.0"
     const val javaxAnnotation = "1.0"
@@ -83,6 +84,7 @@ object AppDependencies{
     const val constraintLayout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     const val googleGmsPlayService = "com.google.android.gms:play-services-plus:${Versions.googleGmsPlayServices}"
     const val androidSupportVectorDrawable = "com.android.support:support-vector-drawable:${Versions.supportLibrary}"
+    const val rxJavaReactive = "io.reactivex:rxjava:${Versions.rxjavaVersion}"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val mockito = "org.mockito:mockito-core:${Versions.mokito}"

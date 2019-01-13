@@ -6,17 +6,13 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.anywhere.adelivery.R
-import com.anywhere.adelivery.data.model.OfferModel
-import com.anywhere.adelivery.utils.CustomPager
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_offer.view.*
+import com.anywhere.adelivery.data.model.entity.Offers
 import kotlinx.android.synthetic.main.offer_list_layout.view.*
 
-class OfferAdapter(val context: Context, offerList: ArrayList<OfferModel>) : PagerAdapter() {
+class OfferAdapter(val context: Context, offerList: List<Offers>) : PagerAdapter() {
 
-    private var offerList: ArrayList<OfferModel>? = null
+    private var offerList: List<Offers>
     private var layoutInflater: LayoutInflater? = null
     private var mContext: Context? = null
 
@@ -35,7 +31,7 @@ class OfferAdapter(val context: Context, offerList: ArrayList<OfferModel>) : Pag
     }
 
     override fun getCount(): Int {
-        return offerList!!.size
+        return offerList.size
     }
 
     override fun saveState(): Parcelable? {
@@ -49,9 +45,9 @@ class OfferAdapter(val context: Context, offerList: ArrayList<OfferModel>) : Pag
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
         val view = layoutInflater!!.inflate(R.layout.offer_list_layout, container, false)
-        view.txtOfferDescription.text = offerList!![position].offerDescription
-        view.txtOfferName.text = offerList!![position].offerName
-        Glide.with(mContext!!).load(offerList!![position].offerImage).into(view.imgOffer)
+        view.txtOfferDescription.text = offerList[position].description
+        view.txtOfferName.text = offerList[position].offerName
+//        Glide.with(mContext!!).load(offerList!![position].offerImage).into(view.imgOffer)
         container.addView(view, 0)
         return view
     }

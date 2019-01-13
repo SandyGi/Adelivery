@@ -7,6 +7,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 def versionMajor = 1
 def versionMinor = 0
 def versionPatch = 0
@@ -22,6 +24,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+        buildConfigField("String", "API_URL", "\"http://aakashganga.org.in/demoApp/operations/\"")
+    }
+
+    dataBinding {
+        enabled = true
     }
     buildTypes {
         release {
@@ -29,6 +36,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -38,7 +46,7 @@ dependencies {
     implementation AppDependencies.gson
     implementation AppDependencies.moshi
     implementation AppDependencies.glide
-    implementation AppDependencies.dagger
+//    implementation AppDependencies.dagger
     implementation AppDependencies.timber
     implementation AppDependencies.rxJava
     implementation AppDependencies.okHttp
@@ -52,8 +60,9 @@ dependencies {
     implementation AppDependencies.roomRuntime
     implementation AppDependencies.okHttpLogger
     implementation AppDependencies.kotlinSupport
-    implementation AppDependencies.daggerSupport
+//    implementation AppDependencies.daggerSupport
     implementation AppDependencies.moshiConverter
+    implementation AppDependencies.rxJavaReactive
     implementation AppDependencies.retrofitAdapter
     implementation AppDependencies.javaxAnnotation
     implementation AppDependencies.javaxAnnotation
@@ -68,6 +77,12 @@ dependencies {
     implementation AppDependencies.androidSupportAppCompat7
     implementation AppDependencies.androidSupportRecyclerView
     implementation AppDependencies.androidSupportVectorDrawable
+//    kapt AppDependencies.daggerCompiler
+
+    implementation 'com.google.dagger:dagger:2.16'
+    kapt 'com.google.dagger:dagger-compiler:2.16'
+    implementation 'com.google.dagger:dagger-android-support:2.16'
+    kapt 'com.google.dagger:dagger-android-processor:2.16'
 
     //Testing lib dependencies
 
