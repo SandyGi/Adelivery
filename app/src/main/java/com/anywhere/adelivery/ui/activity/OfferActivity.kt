@@ -18,6 +18,7 @@ import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.ui.adapter.OfferAdapter
 import com.anywhere.adelivery.utils.Customization
+import com.anywhere.adelivery.viewmodel.ExistingUserViewModel
 import com.anywhere.adelivery.viewmodel.OfferViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_offer.*
@@ -34,6 +35,7 @@ class OfferActivity : DaggerAppCompatActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var offerViewModel: OfferViewModel
+    private lateinit var existingUserViewModel: ExistingUserViewModel
 
 
     var customization = Customization()
@@ -44,12 +46,13 @@ class OfferActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_offer)
 
         offerViewModel = ViewModelProviders.of(this, viewModelFactory).get(OfferViewModel::class.java)
+        existingUserViewModel = ViewModelProviders.of(this, viewModelFactory).get(ExistingUserViewModel::class.java)
         init()
     }
 
     @SuppressLint("InflateParams")
     private fun init() {
-        observeLoadingStatus()
+        observeOfferLoadingStatus()
         offerViewModel.loadData()
 
         val density = resources.displayMetrics.density
@@ -82,8 +85,10 @@ class OfferActivity : DaggerAppCompatActivity() {
             alertDialog.setCancelable(false)
                 .setPositiveButton("Next") { _, _ ->
                     if (!view.userInputDialog.text.equals("") && view.userInputDialog.length() == 10) {
-                        val intent = Intent(this, RegistrationActivity::class.java)
-                        startActivity(intent)
+//                        val intent = Intent(this, RegistrationActivity::class.java)
+//                        startActivity(intent)
+                        observeExistingUserStatus()
+                        existingUserViewModel.loadData()
                     } else {
                         Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
                     }
@@ -108,7 +113,7 @@ class OfferActivity : DaggerAppCompatActivity() {
 
     }
 
-    private fun observeLoadingStatus() {
+    private fun observeOfferLoadingStatus() {
         offerViewModel.response.observe(this,
             Observer { response ->
                 if (response != null && response.status == Status.SUCCESS) {
@@ -126,5 +131,16 @@ class OfferActivity : DaggerAppCompatActivity() {
                     }
                 }
             })
+    }
+
+    private fun observeExistingUserStatus(){
+        existingUserViewModel.response.observe(this, Observer { response ->
+
+            if (response != null && response.status == Status.SUCCESS){
+                Log.e("get users success", response.data.toString())
+            }else{
+                Log.e("get users error", response!!.error.toString())
+            }
+        })
     }
 }
