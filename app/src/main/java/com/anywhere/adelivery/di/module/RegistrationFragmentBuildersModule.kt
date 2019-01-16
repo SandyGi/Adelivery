@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-interface FragmentBuildersModule {
+interface RegistrationFragmentBuildersModule {
 
     @ContributesAndroidInjector
     fun contributeMyDetailFragment(): MyDetailFragment

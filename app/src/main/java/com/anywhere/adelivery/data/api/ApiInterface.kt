@@ -9,6 +9,7 @@ import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiInterface {
     @GET("getOffers.php")
@@ -25,4 +26,7 @@ interface ApiInterface {
 
     @POST("order/confirmOrder.php")
     fun doConfirmation(@Body confirmationRequest: ConfirmationRequest): Observable<ApiListResponse<ConfirmationData>>
+
+    @GET("order/getOrderList.php")
+    fun getOrderList(@Query("userId") userId: String): Observable<ApiListResponse<OrderListData>>
 }

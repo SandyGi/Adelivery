@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.ui.activity.RegistrationActivity
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.app_header_layout.*
 import kotlinx.android.synthetic.main.fragment_my_detail.view.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : DaggerFragment() {
 
     private var activityContext = HomeActivity()
 

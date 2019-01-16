@@ -1,31 +1,44 @@
 package com.anywhere.adelivery.ui.fragment
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
-import com.anywhere.adelivery.data.model.MyOrderListModel
+import com.anywhere.adelivery.data.model.entity.Order
+import com.anywhere.adelivery.data.model.entity.Status
+import com.anywhere.adelivery.data.request.OrderListRequest
 import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.ui.adapter.BaseAdapter
-import com.anywhere.adelivery.utils.DummyData
-import kotlinx.android.synthetic.main.fragment_my_order.*
+import com.anywhere.adelivery.viewmodel.OrderListViewModel
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_my_order.view.*
 import kotlinx.android.synthetic.main.my_order_list.view.*
+import java.util.*
+import javax.inject.Inject
 
-class MyOrderFragment : Fragment() {
+class MyOrderFragment : DaggerFragment() {
 
-    private var homeActivity = HomeActivity()
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        this.homeActivity = context as HomeActivity
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var orderListViewModel: OrderListViewModel
+
+//    private var homeActivity = HomeActivity()
+
+//    override fun onAttach(context: Context?) {
+//        super.onAttach(context)
+//        this.homeActivity = context as HomeActivity
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +46,14 @@ class MyOrderFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_order, container, false)
-        view.fabScheduleDelivery.setOnClickListener{
+
+        orderListViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderListViewModel::class.java)
+        observeProductDeliveryStatus(view)
+        orderListViewModel.getOrderList(AdeliveryApplication.prefHelper!!.userId)
+        view.fabScheduleDelivery.setOnClickListener {
 
         }
-        setOrderList(view)
+//        setOrderList(view)
         return view
     }
 
@@ -45,29 +62,39 @@ class MyOrderFragment : Fragment() {
         activity!!.title = activity!!.getString(R.string.str_my_order)
     }
 
-    private fun setOrderList(view: View) {
+    private fun setOrderList(view: View, orderList: List<Order>) {
         with(view.findViewById<RecyclerView>(R.id.rvOrderList)) {
             val linearLayoutManager = LinearLayoutManager(activity)
             layoutManager = linearLayoutManager
             itemAnimator = DefaultItemAnimator()
 
-            adapter = object : BaseAdapter<MyOrderListModel, View>(activity!!, DummyData.dummyOrderList()) {
+            adapter = object : BaseAdapter<Order, View>(activity!!, orderList as ArrayList<Order>) {
                 override val layoutResId: Int
                     get() = R.layout.my_order_list
 
-                override fun onBindData(model: MyOrderListModel, position: Int, dataBinding: View) {
-                    dataBinding.txtSNO.text = "${model.orderId}."
-                    dataBinding.txtOrderMobileNumber.text = model.orderName
-                    dataBinding.txtOrderStatus.text = model.orderStatus
+                override fun onBindData(model: Order, position: Int, dataBinding: View) {
+                    dataBinding.txtSNO.text = "${position+1}. "
+                    dataBinding.txtOrderMobileNumber.text = model.orderId
+                    dataBinding.txtOrderStatus.text = model.status
                 }
 
-                override fun onItemClick(model: MyOrderListModel, position: Int) {
-                    homeActivity.displaySelectedScreen(homeActivity.ORDER_DETAIL_FRAGMENT)
+                override fun onItemClick(model: Order, position: Int) {
+//                    homeActivity.displaySelectedScreen(homeActivity.ORDER_DETAIL_FRAGMENT)
                 }
-
             }
         }
     }
 
+    private fun observeProductDeliveryStatus(view: View) {
+        orderListViewModel.response.observe(this, Observer { response ->
 
-}// Required empty public constructor
+            if (response != null && response.status == Status.SUCCESS) {
+                setOrderList(view, response.data!!.data.orderList)
+            } else {
+                Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+}

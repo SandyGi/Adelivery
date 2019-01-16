@@ -10,10 +10,11 @@ import android.view.MenuItem
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.fragment.*
 import com.anywhere.adelivery.utils.CommonMethod
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar_layout.*
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val SUBMIT_FRAGMENT = 100
     val CONFIRMATION_FRAGMENT = 101

@@ -141,7 +141,7 @@ class OfferActivity : DaggerAppCompatActivity() {
 
             if (response != null && response.status == Status.SUCCESS) {
                 AdeliveryApplication.prefHelper!!.userId = view.userInputDialog.text.toString()
-                if (response.data!!.createdUserData.isUserDetailAvailable.equals("Y")) {
+                if (response.data!!.createdUserData.userExist.equals("E")) {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 } else {

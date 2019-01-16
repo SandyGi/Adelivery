@@ -31,7 +31,7 @@ import javax.inject.Inject
  * create an instance of this fragment.
  *
  */
-class ConfirmationFragment : DaggerFragment() {
+    class ConfirmationFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

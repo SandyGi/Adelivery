@@ -7,8 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.anywhere.adelivery.R
+import dagger.android.support.DaggerFragment
 
-class ContactUsFragment : Fragment() {
+class ContactUsFragment : DaggerFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

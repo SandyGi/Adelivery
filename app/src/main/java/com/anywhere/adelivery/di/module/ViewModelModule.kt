@@ -37,5 +37,10 @@ interface ViewModelModule{
     fun bindConfirmationViewModel(confirmationViewModel: ConfirmationViewModel) : ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(OrderListViewModel::class)
+    fun bindOrderListViewModel(orderListViewModel: OrderListViewModel) : ViewModel
+
+    @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }
