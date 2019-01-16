@@ -10,9 +10,10 @@ import com.anywhere.adelivery.ui.fragment.ConfirmationFragment
 import com.anywhere.adelivery.ui.fragment.MyDetailFragment
 import com.anywhere.adelivery.ui.fragment.MyOrderFragment
 import com.anywhere.adelivery.ui.fragment.ScheduleDeliveryFragment
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.app_header_layout.*
 
-class RegistrationActivity : AppCompatActivity() {
+class RegistrationActivity : DaggerAppCompatActivity() {
 
     val SUBMIT_FRAGMENT = 100
     val CONFIRMATION_FRAGMENT = 101
@@ -20,7 +21,6 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-//        setSupportActionBar(toolbar)
         displaySelectedScreen(R.id.nav_my_detail)
     }
 

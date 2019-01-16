@@ -1,9 +1,10 @@
 package com.anywhere.adelivery.data.api
 
-import com.anywhere.adelivery.data.model.entity.ApiListResponse
-import com.anywhere.adelivery.data.model.entity.OfferData
-import com.anywhere.adelivery.data.model.entity.ExistingUserData
+import com.anywhere.adelivery.data.model.entity.*
+import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
+import com.anywhere.adelivery.data.request.ExistingUserRequest
 import io.reactivex.Observable
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -12,5 +13,8 @@ interface ApiInterface {
     fun fetchOffers(): Observable<ApiListResponse<OfferData>>
 
     @POST("userInfo.php")
-    fun getExistingUser(): Observable<ApiListResponse<ExistingUserData>>
+    fun getExistingUser(@Body existingUserRequest: ExistingUserRequest): Observable<ApiListResponse<ExistingUserData>>
+
+    @POST("user/createUserDetails.php")
+    fun createdUserDetail(@Body createdUserDetailRequest: CreatedUserDetailRequest): Observable<ApiResponse>
 }

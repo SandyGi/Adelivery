@@ -8,9 +8,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 interface OfferActivityBuildersModule {
 
-//    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
-//    fun contributeMainActivity(): RegistrationActivity
-
     @ContributesAndroidInjector
     fun contributeMainInjector(): OfferActivity
 }

@@ -6,6 +6,7 @@ import com.anywhere.adelivery.di.keys.ViewModelKey
 import com.anywhere.adelivery.ui.ViewModelFactory
 import com.anywhere.adelivery.viewmodel.ExistingUserViewModel
 import com.anywhere.adelivery.viewmodel.OfferViewModel
+import com.anywhere.adelivery.viewmodel.UserDetailViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -21,6 +22,11 @@ interface ViewModelModule{
     @IntoMap
     @ViewModelKey(ExistingUserViewModel::class)
     fun bindExitingViewModel(existingUserViewModel: ExistingUserViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserDetailViewModel::class)
+    fun bindUserDetailViewModel(userDetailViewModel: UserDetailViewModel) : ViewModel
 
     @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

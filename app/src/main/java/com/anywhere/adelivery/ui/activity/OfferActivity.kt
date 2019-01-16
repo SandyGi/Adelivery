@@ -18,11 +18,13 @@ import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.ui.adapter.OfferAdapter
 import com.anywhere.adelivery.utils.Customization
+import com.anywhere.adelivery.utils.PreferencesManager
 import com.anywhere.adelivery.viewmodel.ExistingUserViewModel
 import com.anywhere.adelivery.viewmodel.OfferViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_offer.*
 import kotlinx.android.synthetic.main.app_header_layout.*
+import kotlinx.android.synthetic.main.custom_edt_dialog.*
 import kotlinx.android.synthetic.main.custom_edt_dialog.view.*
 import kotlinx.android.synthetic.main.offer_view_pager_layout.*
 import java.util.*
@@ -85,10 +87,8 @@ class OfferActivity : DaggerAppCompatActivity() {
             alertDialog.setCancelable(false)
                 .setPositiveButton("Next") { _, _ ->
                     if (!view.userInputDialog.text.equals("") && view.userInputDialog.length() == 10) {
-//                        val intent = Intent(this, RegistrationActivity::class.java)
-//                        startActivity(intent)
                         observeExistingUserStatus()
-                        existingUserViewModel.loadData()
+                        existingUserViewModel.getExistingUser(view.userInputDialog.text.toString())
                     } else {
                         Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
                     }
@@ -124,7 +124,6 @@ class OfferActivity : DaggerAppCompatActivity() {
                     pageIndicatorView.setViewPager(vpOffer)
                     vpOffer.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
-
                 } else {
                     if ((response != null && response.status == Status.ERROR) && BuildConfig.DEBUG) {
                         Log.e("get users error", response.error.toString())
@@ -133,13 +132,20 @@ class OfferActivity : DaggerAppCompatActivity() {
             })
     }
 
-    private fun observeExistingUserStatus(){
+    private fun observeExistingUserStatus() {
         existingUserViewModel.response.observe(this, Observer { response ->
 
-            if (response != null && response.status == Status.SUCCESS){
-                Log.e("get users success", response.data.toString())
-            }else{
-                Log.e("get users error", response!!.error.toString())
+            if (response != null && response.status == Status.SUCCESS) {
+                if (response.data!!.createdUserData.isUserDetailAvailable.equals("Y")) {
+                    PreferencesManager.setStringValue(this, userInputDialog.text.toString())
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, RegistrationActivity::class.java)
+                    startActivity(intent)
+                }
+            } else {
+                Toast.makeText(this, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
         })
     }

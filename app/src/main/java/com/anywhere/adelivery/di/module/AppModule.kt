@@ -2,6 +2,7 @@ package com.anywhere.adelivery.di.module
 
 import com.anywhere.adelivery.data.api.ApiInterface
 import com.anywhere.adelivery.data.repository.ExistingUserRepository
+import com.anywhere.adelivery.data.repository.UserDetailRepository
 import com.anywhere.adelivery.data.repository.OfferRepository
 import com.anywhere.adelivery.utils.scheduler.BaseScheduler
 import com.anywhere.adelivery.utils.scheduler.SchedulerProvider
@@ -28,6 +29,12 @@ class AppModule {
     @Singleton
     fun getExistingUser(apiInterface: ApiInterface): ExistingUserRepository {
         return ExistingUserRepository(apiInterface)
+    }
+
+    @Provides
+    @Singleton
+    fun createdUserDetail(apiInterface: ApiInterface): UserDetailRepository{
+        return UserDetailRepository(apiInterface)
     }
 
     @Provides
