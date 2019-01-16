@@ -4,9 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.anywhere.adelivery.di.keys.ViewModelKey
 import com.anywhere.adelivery.ui.ViewModelFactory
-import com.anywhere.adelivery.viewmodel.ExistingUserViewModel
-import com.anywhere.adelivery.viewmodel.OfferViewModel
-import com.anywhere.adelivery.viewmodel.UserDetailViewModel
+import com.anywhere.adelivery.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -27,6 +25,16 @@ interface ViewModelModule{
     @IntoMap
     @ViewModelKey(UserDetailViewModel::class)
     fun bindUserDetailViewModel(userDetailViewModel: UserDetailViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductDetailViewModel::class)
+    fun bindDeliveryViewModel(productDetailViewModel: ProductDetailViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ConfirmationViewModel::class)
+    fun bindConfirmationViewModel(confirmationViewModel: ConfirmationViewModel) : ViewModel
 
     @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

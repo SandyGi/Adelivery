@@ -10,21 +10,21 @@ import android.os.Handler
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.View.GONE
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.BuildConfig
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.ui.adapter.OfferAdapter
 import com.anywhere.adelivery.utils.Customization
-import com.anywhere.adelivery.utils.PreferencesManager
 import com.anywhere.adelivery.viewmodel.ExistingUserViewModel
 import com.anywhere.adelivery.viewmodel.OfferViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_offer.*
 import kotlinx.android.synthetic.main.app_header_layout.*
-import kotlinx.android.synthetic.main.custom_edt_dialog.*
 import kotlinx.android.synthetic.main.custom_edt_dialog.view.*
 import kotlinx.android.synthetic.main.offer_view_pager_layout.*
 import java.util.*
@@ -39,6 +39,8 @@ class OfferActivity : DaggerAppCompatActivity() {
     private lateinit var offerViewModel: OfferViewModel
     private lateinit var existingUserViewModel: ExistingUserViewModel
 
+    var userId: String? = null
+
 
     var customization = Customization()
     private var currentPage = 0
@@ -46,6 +48,8 @@ class OfferActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offer)
+
+        userId = AdeliveryApplication.prefHelper!!.userId
 
         offerViewModel = ViewModelProviders.of(this, viewModelFactory).get(OfferViewModel::class.java)
         existingUserViewModel = ViewModelProviders.of(this, viewModelFactory).get(ExistingUserViewModel::class.java)
@@ -87,7 +91,7 @@ class OfferActivity : DaggerAppCompatActivity() {
             alertDialog.setCancelable(false)
                 .setPositiveButton("Next") { _, _ ->
                     if (!view.userInputDialog.text.equals("") && view.userInputDialog.length() == 10) {
-                        observeExistingUserStatus()
+                        observeExistingUserStatus(view)
                         existingUserViewModel.getExistingUser(view.userInputDialog.text.toString())
                     } else {
                         Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
@@ -132,18 +136,19 @@ class OfferActivity : DaggerAppCompatActivity() {
             })
     }
 
-    private fun observeExistingUserStatus() {
+    private fun observeExistingUserStatus(view: View) {
         existingUserViewModel.response.observe(this, Observer { response ->
 
             if (response != null && response.status == Status.SUCCESS) {
+                AdeliveryApplication.prefHelper!!.userId = view.userInputDialog.text.toString()
                 if (response.data!!.createdUserData.isUserDetailAvailable.equals("Y")) {
-                    PreferencesManager.setStringValue(this, userInputDialog.text.toString())
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 } else {
                     val intent = Intent(this, RegistrationActivity::class.java)
                     startActivity(intent)
                 }
+
             } else {
                 Toast.makeText(this, "Server Side Error", Toast.LENGTH_SHORT).show()
             }

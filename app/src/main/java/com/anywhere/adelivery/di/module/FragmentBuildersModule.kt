@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.di.module
 
+import com.anywhere.adelivery.ui.fragment.ConfirmationFragment
 import com.anywhere.adelivery.ui.fragment.MyDetailFragment
 import com.anywhere.adelivery.ui.fragment.ScheduleDeliveryFragment
 import dagger.Module
@@ -12,6 +13,9 @@ interface FragmentBuildersModule {
     fun contributeMyDetailFragment(): MyDetailFragment
 
     @ContributesAndroidInjector
-    fun contributeListColorsFragment(): ScheduleDeliveryFragment
+    fun contributeScheduleDeliveryFragment(): ScheduleDeliveryFragment
+
+    @ContributesAndroidInjector
+    fun contributeConfirmationFragment(): ConfirmationFragment
 
 }

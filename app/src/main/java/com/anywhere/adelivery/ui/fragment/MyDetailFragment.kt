@@ -5,11 +5,11 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
@@ -18,7 +18,6 @@ import com.anywhere.adelivery.ui.activity.RegistrationActivity
 import com.anywhere.adelivery.utils.PreferencesManager
 import com.anywhere.adelivery.viewmodel.UserDetailViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_my_detail.*
 import kotlinx.android.synthetic.main.fragment_my_detail.view.*
 import javax.inject.Inject
 
@@ -64,7 +63,7 @@ class MyDetailFragment : DaggerFragment() {
             view.edtEmail.text.toString(),
             view.edtCity.text.toString()
         )
-        return CreatedUserDetailRequest(view.edtMobileNumber.text.toString(), userDetail)
+        return CreatedUserDetailRequest(AdeliveryApplication.prefHelper!!.userId, userDetail)
     }
 
     private fun observeExistingUserStatus() {
@@ -72,7 +71,7 @@ class MyDetailFragment : DaggerFragment() {
 
             if (response != null && response.status == Status.SUCCESS) {
                 if (response.data!!.data.equals("Done")) {
-                    activityContext.displaySelectedScreen(activityContext.SUBMIT_FRAGMENT)
+                    activityContext.displaySelectedScreen(activityContext.SUBMIT_FRAGMENT, null)
                 }
             } else {
                 Toast.makeText(activityContext, "Server Side Error", Toast.LENGTH_SHORT).show()

@@ -21,10 +21,10 @@ class RegistrationActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-        displaySelectedScreen(R.id.nav_my_detail)
+        displaySelectedScreen(R.id.nav_my_detail, null)
     }
 
-    fun displaySelectedScreen(position: Int) {
+    fun displaySelectedScreen(position: Int, bundle: Bundle?) {
         // update the main content by replacing fragments
         val fragment: Fragment = when (position) {
             R.id.nav_my_detail -> MyDetailFragment()
@@ -38,7 +38,9 @@ class RegistrationActivity : DaggerAppCompatActivity() {
                 GONE
 
         val fragmentManager = supportFragmentManager // For AppCompat use getSupportFragmentManager
-
+        if (bundle!=null){
+            fragment.arguments = bundle
+        }
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
 }

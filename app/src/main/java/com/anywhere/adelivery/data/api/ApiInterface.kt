@@ -1,7 +1,9 @@
 package com.anywhere.adelivery.data.api
 
 import com.anywhere.adelivery.data.model.entity.*
+import com.anywhere.adelivery.data.request.ConfirmationRequest
 import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
+import com.anywhere.adelivery.data.request.DeliveryRequest
 import com.anywhere.adelivery.data.request.ExistingUserRequest
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -17,4 +19,10 @@ interface ApiInterface {
 
     @POST("user/createUserDetails.php")
     fun createdUserDetail(@Body createdUserDetailRequest: CreatedUserDetailRequest): Observable<ApiResponse>
+
+    @POST("order/createDelivery.php")
+    fun createdDeliveryDetail(@Body createDeliveryRequest: DeliveryRequest): Observable<ApiListResponse<DeliveryData>>
+
+    @POST("order/confirmOrder.php")
+    fun doConfirmation(@Body confirmationRequest: ConfirmationRequest): Observable<ApiListResponse<ConfirmationData>>
 }

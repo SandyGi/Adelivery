@@ -5,6 +5,8 @@ import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 
+const val ORDER_ID = "ORDER_ID"
+
 class CommonMethod {
     companion object {
         fun showCustomToast(context: Context, message: String) {
