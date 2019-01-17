@@ -3,7 +3,6 @@ package com.anywhere.adelivery.ui.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
-import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.OrderDetailViewModel
 import dagger.android.support.DaggerFragment
@@ -50,4 +48,4 @@ class OrderDetailFragment : DaggerFragment() {
             }
         })
     }
-}// Required empty public constructor
+}

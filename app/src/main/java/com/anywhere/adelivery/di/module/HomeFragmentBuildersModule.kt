@@ -22,4 +22,9 @@ interface HomeFragmentBuildersModule {
     @ContributesAndroidInjector
     fun contributeContactUsFragment(): ContactUsFragment
 
+    @ContributesAndroidInjector
+    fun contributeScheduleDeliveryFragment(): ScheduleDeliveryFragment
+
+    @ContributesAndroidInjector
+    fun contributeConfirmationFragment(): ConfirmationFragment
 }

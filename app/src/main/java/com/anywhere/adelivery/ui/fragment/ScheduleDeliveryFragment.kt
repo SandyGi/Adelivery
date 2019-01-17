@@ -17,9 +17,10 @@ import com.anywhere.adelivery.data.request.DeliveryRequest
 import com.anywhere.adelivery.data.request.DropLocation
 import com.anywhere.adelivery.data.request.PickUpLocation
 import com.anywhere.adelivery.data.request.ProductDelivery
+import com.anywhere.adelivery.listener.ChangeFragmentListener
+import com.anywhere.adelivery.ui.activity.CONFIRMATION_FRAGMENT
 import com.anywhere.adelivery.ui.activity.RegistrationActivity
 import com.anywhere.adelivery.utils.ORDER_ID
-import com.anywhere.adelivery.utils.PreferencesManager
 import com.anywhere.adelivery.viewmodel.ProductDetailViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_schedule_delivery.*
@@ -35,11 +36,15 @@ class ScheduleDeliveryFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var productDetailViewModel: ProductDetailViewModel
 
-    private var activityContext = RegistrationActivity()
+    private lateinit var changeFragmentListener: ChangeFragmentListener
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        this.activityContext = context as RegistrationActivity
+        try {
+            changeFragmentListener = context as ChangeFragmentListener
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onCreateView(
@@ -76,11 +81,6 @@ class ScheduleDeliveryFragment : DaggerFragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//        activity!!.title = activity!!.getString(R.string.str_submit_detail)
-    }
-
     private fun getProductDetail(view: View): DeliveryRequest {
 
         var pickUpLocation = PickUpLocation(view.tiEdtPickUpLocation.text.toString(), "18.510081", "73.807788")
@@ -108,9 +108,9 @@ class ScheduleDeliveryFragment : DaggerFragment() {
             if (response != null && response.status == Status.SUCCESS) {
                 var bundle = Bundle()
                 bundle.putString(ORDER_ID, response.data!!.data.deliveryId)
-                activityContext.displaySelectedScreen(activityContext.CONFIRMATION_FRAGMENT, bundle)
+                changeFragmentListener.onChangeFragmentListener(CONFIRMATION_FRAGMENT, bundle)
             } else {
-                Toast.makeText(activityContext, "Server Side Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -155,3 +155,4 @@ class OfferActivity : DaggerAppCompatActivity() {
         })
     }
 }
+

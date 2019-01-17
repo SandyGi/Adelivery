@@ -1,24 +1,24 @@
 package com.anywhere.adelivery.viewmodel
 
 import android.annotation.SuppressLint
-import com.anywhere.adelivery.data.model.entity.ApiListResponse
+import com.anywhere.adelivery.data.model.entity.ApiResponse
 import com.anywhere.adelivery.data.model.entity.Response
 import com.anywhere.adelivery.data.model.entity.Status
-import com.anywhere.adelivery.data.model.entity.UserDetailData
-import com.anywhere.adelivery.data.repository.UserDetailRepository
+import com.anywhere.adelivery.data.repository.CreateUserRepository
+import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
 import com.anywhere.adelivery.di.base.BaseViewModel
 import com.anywhere.adelivery.utils.scheduler.BaseScheduler
 import javax.inject.Inject
 
-class UserDetailViewModel @Inject constructor(
+class CreateUserViewModel @Inject constructor(
     private val scheduler: BaseScheduler,
-    private val userDetailRepository: UserDetailRepository
-) : BaseViewModel<ApiListResponse<UserDetailData>>() {
+    private val userDetailRepository: CreateUserRepository
+) : BaseViewModel<ApiResponse>() {
 
-    lateinit var userId: String
+    lateinit var createdUserDetailRequest: CreatedUserDetailRequest
     @SuppressLint("CheckResult")
     override fun loadData() {
-        userDetailRepository.getUserDetail(userId)
+        userDetailRepository.createdUserDetail(createdUserDetailRequest)
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
             .doOnSubscribe { loadingStatus.value = true }
@@ -30,8 +30,8 @@ class UserDetailViewModel @Inject constructor(
             })
     }
 
-    fun getUserDetail(userId: String) {
-        this.userId = userId
+    fun createdUserDetail(createdUserDetailRequest: CreatedUserDetailRequest) {
+        this.createdUserDetailRequest = createdUserDetailRequest
         loadData()
     }
 }

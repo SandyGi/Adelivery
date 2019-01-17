@@ -18,6 +18,8 @@ import com.anywhere.adelivery.data.model.entity.Order
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.data.request.OrderListRequest
 import com.anywhere.adelivery.ui.activity.HomeActivity
+import com.anywhere.adelivery.ui.activity.ORDER_DETAIL_FRAGMENT
+import com.anywhere.adelivery.ui.activity.SCHEDULE_DELIVERY_FRAGMENT
 import com.anywhere.adelivery.ui.adapter.BaseAdapter
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.OrderListViewModel
@@ -52,7 +54,7 @@ class MyOrderFragment : DaggerFragment() {
         observeProductDeliveryStatus(view)
         orderListViewModel.getOrderList(AdeliveryApplication.prefHelper!!.userId)
         view.fabScheduleDelivery.setOnClickListener {
-
+            homeActivity.displaySelectedScreen(SCHEDULE_DELIVERY_FRAGMENT, null)
         }
 //        setOrderList(view)
         return view
@@ -82,7 +84,7 @@ class MyOrderFragment : DaggerFragment() {
                 override fun onItemClick(model: Order, position: Int) {
                     var bundle = Bundle()
                     bundle.putString(ORDER_ID, model.orderId)
-                    homeActivity.displaySelectedScreen(homeActivity.ORDER_DETAIL_FRAGMENT, bundle)
+                    homeActivity.displaySelectedScreen(ORDER_DETAIL_FRAGMENT, bundle)
                 }
             }
         }

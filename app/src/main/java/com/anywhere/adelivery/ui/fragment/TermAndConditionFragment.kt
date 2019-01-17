@@ -1,7 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ class TermAndConditionFragment : DaggerFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_term_and_condition, container, false)
-
         return view
     }
 
@@ -25,4 +23,4 @@ class TermAndConditionFragment : DaggerFragment() {
         activity!!.title = activity!!.getString(R.string.str_term_amp_condition)
     }
 
-}// Required empty public constructor
+}

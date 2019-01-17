@@ -10,41 +10,47 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-interface ViewModelModule{
+interface ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(OfferViewModel::class)
-    fun bindOfferViewModel(offerViewModel: OfferViewModel) : ViewModel
+    fun bindOfferViewModel(offerViewModel: OfferViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ExistingUserViewModel::class)
-    fun bindExitingViewModel(existingUserViewModel: ExistingUserViewModel) : ViewModel
+    fun bindExitingViewModel(existingUserViewModel: ExistingUserViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(UserDetailViewModel::class)
-    fun bindUserDetailViewModel(userDetailViewModel: UserDetailViewModel) : ViewModel
+    @ViewModelKey(CreateUserViewModel::class)
+    fun bindCreateUserViewModel(createUserViewModel: CreateUserViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ProductDetailViewModel::class)
-    fun bindDeliveryViewModel(productDetailViewModel: ProductDetailViewModel) : ViewModel
+    fun bindDeliveryViewModel(productDetailViewModel: ProductDetailViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(ConfirmationViewModel::class)
-    fun bindConfirmationViewModel(confirmationViewModel: ConfirmationViewModel) : ViewModel
+    fun bindConfirmationViewModel(confirmationViewModel: ConfirmationViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserDetailViewModel::class)
+    fun bindUserDetailViewModel(userDetailViewModel: UserDetailViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(OrderListViewModel::class)
-    fun bindOrderListViewModel(orderListViewModel: OrderListViewModel) : ViewModel
+    fun bindOrderListViewModel(orderListViewModel: OrderListViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(OrderDetailViewModel::class)
-    fun bindOrderDetailViewModel(orderDetailViewModel: OrderDetailViewModel) : ViewModel
+    fun bindOrderDetailViewModel(orderDetailViewModel: OrderDetailViewModel): ViewModel
 
     @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

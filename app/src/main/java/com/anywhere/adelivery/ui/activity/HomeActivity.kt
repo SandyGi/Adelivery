@@ -6,18 +6,21 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
+import com.anywhere.adelivery.listener.ChangeFragmentListener
 import com.anywhere.adelivery.ui.fragment.*
 import com.anywhere.adelivery.utils.CommonMethod
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar_layout.*
+import kotlinx.android.synthetic.main.header_mobile_layout.*
 
-class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+const val ORDER_DETAIL_FRAGMENT = 102
 
-    val SUBMIT_FRAGMENT = 100
-    val CONFIRMATION_FRAGMENT = 101
-    val ORDER_DETAIL_FRAGMENT = 102
+class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    ChangeFragmentListener {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -28,7 +31,7 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
+        txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
         nav_view.setNavigationItemSelectedListener(this)
         displaySelectedScreen(R.id.nav_my_order, null)
     }
@@ -50,6 +53,10 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         return true
     }
 
+    override fun onChangeFragmentListener(type: Int, bundle: Bundle) {
+        displaySelectedScreen(type, bundle)
+    }
+
     fun displaySelectedScreen(position: Int, bundle: Bundle?) {
         // update the main content by replacing fragments
         val fragment: Fragment = when (position) {
@@ -57,7 +64,7 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             R.id.nav_my_order -> MyOrderFragment()
             R.id.nav_contact_us -> ContactUsFragment()
             R.id.nav_term_condition -> TermAndConditionFragment()
-            SUBMIT_FRAGMENT -> ScheduleDeliveryFragment()
+            SCHEDULE_DELIVERY_FRAGMENT -> ScheduleDeliveryFragment()
             CONFIRMATION_FRAGMENT -> ConfirmationFragment()
             ORDER_DETAIL_FRAGMENT -> OrderDetailFragment()
             else -> MyOrderFragment()
@@ -70,5 +77,6 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
 
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
+
 
 }

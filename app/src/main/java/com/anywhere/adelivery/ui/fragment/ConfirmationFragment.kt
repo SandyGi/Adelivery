@@ -17,8 +17,8 @@ import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.data.request.ConfirmationRequest
+import com.anywhere.adelivery.listener.ChangeFragmentListener
 import com.anywhere.adelivery.ui.activity.HomeActivity
-import com.anywhere.adelivery.ui.activity.RegistrationActivity
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.ConfirmationViewModel
 import dagger.android.support.DaggerFragment
@@ -31,19 +31,23 @@ import javax.inject.Inject
  * create an instance of this fragment.
  *
  */
-    class ConfirmationFragment : DaggerFragment() {
+class ConfirmationFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var confirmationViewModel: ConfirmationViewModel
 
-    private var activityContext = RegistrationActivity()
     private var orderId = ""
+    private lateinit var changeFragmentListener: ChangeFragmentListener
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        this.activityContext = context as RegistrationActivity
+        try {
+            changeFragmentListener = context as ChangeFragmentListener
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onCreateView(
@@ -83,9 +87,9 @@ import javax.inject.Inject
             if (response != null && response.status == Status.SUCCESS) {
                 var intent = Intent(activity, HomeActivity::class.java)
                 startActivity(intent)
-                activityContext.finish()
+                activity!!.finish()
             } else {
-                Toast.makeText(activityContext, "Server Side Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
         })
     }

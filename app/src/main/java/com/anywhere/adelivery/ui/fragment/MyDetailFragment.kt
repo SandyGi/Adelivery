@@ -15,8 +15,8 @@ import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
 import com.anywhere.adelivery.data.request.UserDetails
 import com.anywhere.adelivery.ui.activity.RegistrationActivity
-import com.anywhere.adelivery.utils.PreferencesManager
-import com.anywhere.adelivery.viewmodel.UserDetailViewModel
+import com.anywhere.adelivery.ui.activity.SCHEDULE_DELIVERY_FRAGMENT
+import com.anywhere.adelivery.viewmodel.CreateUserViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_my_detail.view.*
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class MyDetailFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var userDetailViewModel: UserDetailViewModel
+    private lateinit var userDetailViewModel: CreateUserViewModel
 
     private var activityContext = RegistrationActivity()
     override fun onAttach(context: Context?) {
@@ -40,7 +40,7 @@ class MyDetailFragment : DaggerFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_my_detail, container, false)
 
-        userDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserDetailViewModel::class.java)
+        userDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(CreateUserViewModel::class.java)
         observeExistingUserStatus()
         view.btnNext.setOnClickListener {
 
@@ -71,7 +71,7 @@ class MyDetailFragment : DaggerFragment() {
 
             if (response != null && response.status == Status.SUCCESS) {
                 if (response.data!!.data.equals("Done")) {
-                    activityContext.displaySelectedScreen(activityContext.SUBMIT_FRAGMENT, null)
+                    activityContext.displaySelectedScreen(SCHEDULE_DELIVERY_FRAGMENT, null)
                 }
             } else {
                 Toast.makeText(activityContext, "Server Side Error", Toast.LENGTH_SHORT).show()

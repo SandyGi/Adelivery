@@ -33,5 +33,8 @@ interface ApiInterface {
     @GET("order/getOrderDetails.php")
     fun getOrderDetail(@Query("userId") userId: String, @Query("orderId") orderId: String): Observable<ApiListResponse<OrderDetailData>>
 
+    @GET("user/getUserInfo.php")
+    fun getUserDetail(@Query("userId") userId: String): Observable<ApiListResponse<UserDetailData>>
+
 
 }

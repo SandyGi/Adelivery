@@ -2,26 +2,31 @@ package com.anywhere.adelivery.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
+import com.anywhere.adelivery.listener.ChangeFragmentListener
 import com.anywhere.adelivery.ui.fragment.ConfirmationFragment
 import com.anywhere.adelivery.ui.fragment.MyDetailFragment
 import com.anywhere.adelivery.ui.fragment.MyOrderFragment
 import com.anywhere.adelivery.ui.fragment.ScheduleDeliveryFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.app_header_layout.*
+const val SCHEDULE_DELIVERY_FRAGMENT = 100
+const val CONFIRMATION_FRAGMENT = 101
 
-class RegistrationActivity : DaggerAppCompatActivity() {
-
-    val SUBMIT_FRAGMENT = 100
-    val CONFIRMATION_FRAGMENT = 101
+class RegistrationActivity : DaggerAppCompatActivity(), ChangeFragmentListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
         displaySelectedScreen(R.id.nav_my_detail, null)
+        txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
+    }
+
+    override fun onChangeFragmentListener(type: Int, bundle: Bundle) {
+        displaySelectedScreen(type, bundle)
     }
 
     fun displaySelectedScreen(position: Int, bundle: Bundle?) {
@@ -29,7 +34,7 @@ class RegistrationActivity : DaggerAppCompatActivity() {
         val fragment: Fragment = when (position) {
             R.id.nav_my_detail -> MyDetailFragment()
             R.id.nav_my_order -> MyOrderFragment()
-            SUBMIT_FRAGMENT -> ScheduleDeliveryFragment()
+            SCHEDULE_DELIVERY_FRAGMENT -> ScheduleDeliveryFragment()
             CONFIRMATION_FRAGMENT -> ConfirmationFragment()
             else -> MyDetailFragment()
 
