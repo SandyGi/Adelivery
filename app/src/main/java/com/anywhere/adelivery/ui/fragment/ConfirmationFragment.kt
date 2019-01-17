@@ -58,7 +58,7 @@ import javax.inject.Inject
         orderId = arguments!!.getString(ORDER_ID)
         Log.e("Confirmation fragment ", "$orderId")
 
-        observeProductDeliveryStatus()
+        observeConfirmationStatus()
         view.btnConfirm.setOnClickListener {
 
             confirmationViewModel.doConfirmation(doConfirmation(view))
@@ -77,7 +77,7 @@ import javax.inject.Inject
         return ConfirmationRequest(orderId, AdeliveryApplication.prefHelper!!.userId)
     }
 
-    private fun observeProductDeliveryStatus() {
+    private fun observeConfirmationStatus() {
         confirmationViewModel.response.observe(this, Observer { response ->
 
             if (response != null && response.status == Status.SUCCESS) {

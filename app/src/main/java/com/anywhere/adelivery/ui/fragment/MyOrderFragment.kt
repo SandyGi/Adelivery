@@ -19,6 +19,7 @@ import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.data.request.OrderListRequest
 import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.ui.adapter.BaseAdapter
+import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.OrderListViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_my_order.view.*
@@ -33,12 +34,12 @@ class MyOrderFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var orderListViewModel: OrderListViewModel
 
-//    private var homeActivity = HomeActivity()
+    private var homeActivity = HomeActivity()
 
-//    override fun onAttach(context: Context?) {
-//        super.onAttach(context)
-//        this.homeActivity = context as HomeActivity
-//    }
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        this.homeActivity = context as HomeActivity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,7 +80,9 @@ class MyOrderFragment : DaggerFragment() {
                 }
 
                 override fun onItemClick(model: Order, position: Int) {
-//                    homeActivity.displaySelectedScreen(homeActivity.ORDER_DETAIL_FRAGMENT)
+                    var bundle = Bundle()
+                    bundle.putString(ORDER_ID, model.orderId)
+                    homeActivity.displaySelectedScreen(homeActivity.ORDER_DETAIL_FRAGMENT, bundle)
                 }
             }
         }

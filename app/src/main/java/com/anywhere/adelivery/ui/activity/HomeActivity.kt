@@ -5,7 +5,6 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.ui.fragment.*
@@ -31,7 +30,7 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        displaySelectedScreen(R.id.nav_my_order)
+        displaySelectedScreen(R.id.nav_my_order, null)
     }
 
     override fun onBackPressed() {
@@ -46,12 +45,12 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        displaySelectedScreen(item.itemId)
+        displaySelectedScreen(item.itemId, null)
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    fun displaySelectedScreen(position: Int) {
+    fun displaySelectedScreen(position: Int, bundle: Bundle?) {
         // update the main content by replacing fragments
         val fragment: Fragment = when (position) {
             R.id.nav_my_detail -> ProfileFragment()
@@ -64,9 +63,9 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             else -> MyOrderFragment()
 
         }
-//        if (position != R.id.nav_my_detail) txtMobileNumber.visibility = VISIBLE else this.txtMobileNumber.visibility =
-//                GONE
-
+        if (bundle != null) {
+            fragment.arguments = bundle
+        }
         val fragmentManager = supportFragmentManager // For AppCompat use getSupportFragmentManager
 
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()

@@ -42,5 +42,10 @@ interface ViewModelModule{
     fun bindOrderListViewModel(orderListViewModel: OrderListViewModel) : ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(OrderDetailViewModel::class)
+    fun bindOrderDetailViewModel(orderDetailViewModel: OrderDetailViewModel) : ViewModel
+
+    @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }
