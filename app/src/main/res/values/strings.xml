@@ -109,9 +109,9 @@
     <string name="str_email_id_label">Email Id :</string>
     <string name="str_city_label">City :</string>
     <string name="str_set_location">Set Location :</string>
-    <string name="str_pick_up_location">Pick up location</string>
+    <string name="str_pick_up_location">Pick up location with zip code</string>
     <string name="str_pick_up">Pick up :</string>
-    <string name="str_drop_location">Drop location</string>
+    <string name="str_drop_location">Drop location with zip code</string>
     <string name="str_drop">Drop :</string>
     <string name="str_pick_up_location_label">Pick up location :</string>
     <string name="str_drop_location_label">Drop location :</string>
