@@ -15,6 +15,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_toolbar_layout.*
 import kotlinx.android.synthetic.main.header_mobile_layout.*
+import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 const val ORDER_DETAIL_FRAGMENT = 102
 
@@ -32,7 +33,10 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
+
         nav_view.setNavigationItemSelectedListener(this)
+        val view = nav_view.getHeaderView(0)
+        view.txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
         displaySelectedScreen(R.id.nav_my_order, null)
     }
 
@@ -60,6 +64,7 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
     fun displaySelectedScreen(position: Int, bundle: Bundle?) {
         // update the main content by replacing fragments
         val fragment: Fragment = when (position) {
+            R.id.nav_home -> HomeFragment()
             R.id.nav_my_detail -> ProfileFragment()
             R.id.nav_my_order -> MyOrderFragment()
             R.id.nav_contact_us -> ContactUsFragment()

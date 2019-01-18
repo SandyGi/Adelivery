@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
+import com.anywhere.adelivery.utils.CommonMethod.Companion.changeDateFormat
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.OrderDetailViewModel
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_order_detail.view.*
 import javax.inject.Inject
 
 class OrderDetailFragment : DaggerFragment() {
@@ -42,6 +44,15 @@ class OrderDetailFragment : DaggerFragment() {
         orderDetailViewModel.response.observe(this, Observer { response ->
 
             if (response != null && response.status == Status.SUCCESS) {
+
+                var orderDetailData = response.data!!.data[0]
+                view.txtPickUpAddress.text = orderDetailData.pickupLocation
+                view.txtDropAddress.text = orderDetailData.dropLocation
+
+                view.txtDeliveryDate.text =
+                        changeDateFormat(orderDetailData.delivery_exp_date, "yyyy-MM-dd", "dd/MM/yyyy")
+
+                view.txtAmountToPay.text = orderDetailData.Payment_amt
 
             } else {
                 Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()

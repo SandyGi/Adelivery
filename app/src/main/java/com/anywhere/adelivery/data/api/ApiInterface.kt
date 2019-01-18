@@ -31,7 +31,7 @@ interface ApiInterface {
     fun getOrderList(@Query("userId") userId: String): Observable<ApiListResponse<OrderListData>>
 
     @GET("order/getOrderDetails.php")
-    fun getOrderDetail(@Query("userId") userId: String, @Query("orderId") orderId: String): Observable<ApiListResponse<OrderDetailData>>
+    fun getOrderDetail(@Query("userId") userId: String, @Query("orderId") orderId: String): Observable<ApiListResponse<List<OrderDetail>>>
 
     @GET("user/getUserInfo.php")
     fun getUserDetail(@Query("userId") userId: String): Observable<ApiListResponse<UserDetailData>>

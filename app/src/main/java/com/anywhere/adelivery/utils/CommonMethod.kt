@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val ORDER_ID = "ORDER_ID"
 
@@ -26,6 +29,24 @@ class CommonMethod {
                     dialog.dismiss()
                 }
             alertDialog.show()
+        }
+
+        fun changeDateFormat(inputString: String, inputFormat: String, outputFormat: String): String? {
+
+            val inputFormatDate = SimpleDateFormat(inputFormat, Locale.US)
+            val outputFormatDate = SimpleDateFormat(outputFormat, Locale.US)
+
+            var date: Date? = null
+            var str: String? = null
+
+            try {
+                date = inputFormatDate.parse(inputString)
+                str = outputFormatDate.format(date)
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+
+            return str
         }
     }
 }

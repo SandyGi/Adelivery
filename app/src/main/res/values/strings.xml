@@ -76,6 +76,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
+
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -87,6 +88,7 @@
     <string name="str_enter_mobile_number">Please enter mobile number</string>
     <string name="str_my_detail">My Detail</string>
     <string name="str_my_order">My Order</string>
+    <string name="str_nav_home">Home</string>
     <string name="str_setting">Setting</string>
     <string name="str_contact_us">Contact Us</string>
     <string name="str_term_amp_condition"><![CDATA[Term & Condition]]></string>
@@ -136,8 +138,9 @@
     <string name="str_help">To see previous or current schedule delivery, user need to enter mobile number or email
         address the he will receive OTP and the able to track delivery\'s.
     </string>
-    <string name="str_adelivery_gmail_com">adelivery@gmail.com</string>
+    <string name="str_adelivery_gmail_com">adeliverys@gmail.com</string>
     <string name="str_term_and_condition_value">1. Privacy policy, means you are allowing us to keep record of personal data.\n\n 2.\t Delivery periods ginven at the time of ordering are approximate and may vary.\n\n 3.\t In case of late delivery, charges neither be voided nor refunded by us.\n\n
 4.\t If we fail to contact you or attempt to deliver package but you aren\'t available at the time of scheduled periods, \n\t Then customer need to pay for re-schedule and prior scheduled delivery.\n\n
 5.\t Payment mode is COD,m which can be vary as needed. \n\n 6.\t Charges applied are for two way distance calculated. \n\n 7.\t Adelivery reserves the right to block the customer\'s with suspicious activity on account.</string>
+    <string name="admin_9021580768">9021580768/ 8130904435</string>
 </resources>

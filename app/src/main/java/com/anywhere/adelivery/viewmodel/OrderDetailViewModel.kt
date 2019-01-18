@@ -12,7 +12,7 @@ import javax.inject.Inject
 class OrderDetailViewModel @Inject constructor(
     private val scheduler: BaseScheduler,
     private val orderDetailRepository: OrderDetailRepository
-) : BaseViewModel<ApiListResponse<OrderDetailData>>() {
+) : BaseViewModel<ApiListResponse<List<OrderDetail>>>() {
 
     lateinit var orderId: String
     @SuppressLint("CheckResult")
