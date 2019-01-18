@@ -27,4 +27,7 @@ interface HomeFragmentBuildersModule {
 
     @ContributesAndroidInjector
     fun contributeConfirmationFragment(): ConfirmationFragment
+
+    @ContributesAndroidInjector
+    fun contributeHomeFragment(): HomeFragment
 }

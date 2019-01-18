@@ -1,10 +1,7 @@
 package com.anywhere.adelivery.data.api
 
 import com.anywhere.adelivery.data.model.entity.*
-import com.anywhere.adelivery.data.request.ConfirmationRequest
-import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
-import com.anywhere.adelivery.data.request.DeliveryRequest
-import com.anywhere.adelivery.data.request.ExistingUserRequest
+import com.anywhere.adelivery.data.request.*
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -35,6 +32,13 @@ interface ApiInterface {
 
     @GET("user/getUserInfo.php")
     fun getUserDetail(@Query("userId") userId: String): Observable<ApiListResponse<UserDetailData>>
+
+
+    @POST("order/canceOrder.php")
+    fun cancelOrder(@Body cancelOrderRequest: CancelOrderRequest): Observable<ApiResponse>
+
+    @POST("order/updateToDeliver.php")
+    fun orderDelivered(@Body cancelOrderRequest: CancelOrderRequest): Observable<ApiResponse>
 
 
 }

@@ -8,10 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
+import com.anywhere.adelivery.data.request.CancelOrderRequest
+import com.anywhere.adelivery.utils.CommonMethod
 import com.anywhere.adelivery.utils.CommonMethod.Companion.changeDateFormat
 import com.anywhere.adelivery.utils.ORDER_ID
+import com.anywhere.adelivery.viewmodel.CancelOrderViewModel
+import com.anywhere.adelivery.viewmodel.OrderDeliveredViewModel
 import com.anywhere.adelivery.viewmodel.OrderDetailViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_order_detail.view.*
@@ -22,6 +27,9 @@ class OrderDetailFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var orderDetailViewModel: OrderDetailViewModel
+    private lateinit var cancelOrderViewModel: CancelOrderViewModel
+    private lateinit var orderDeliveredViewModel: OrderDeliveredViewModel
+    private lateinit var uId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +38,24 @@ class OrderDetailFragment : DaggerFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_order_detail, container, false)
         orderDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderDetailViewModel::class.java)
+        cancelOrderViewModel = ViewModelProviders.of(this, viewModelFactory).get(CancelOrderViewModel::class.java)
+        orderDeliveredViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderDeliveredViewModel::class.java)
+
         observeOrderDetailStatus(view)
+        observeCancelOrderStatus(view)
+        observeOrderDeliveredStatus(view)
         orderDetailViewModel.getOrderDetail(arguments!!.getString(ORDER_ID))
+        view.btnCancel.setOnClickListener {
+            val cancelOrderRequest =
+                CancelOrderRequest(arguments!!.getString(ORDER_ID), AdeliveryApplication.prefHelper!!.userId, uId)
+            cancelOrderViewModel.createdUserDetail(cancelOrderRequest)
+        }
+
+        view.btnOrderDelivered.setOnClickListener {
+            val cancelOrderRequest =
+                CancelOrderRequest(arguments!!.getString(ORDER_ID), AdeliveryApplication.prefHelper!!.userId, uId)
+            orderDeliveredViewModel.orderDelivered(cancelOrderRequest)
+        }
         return view
     }
 
@@ -53,9 +77,48 @@ class OrderDetailFragment : DaggerFragment() {
                         changeDateFormat(orderDetailData.delivery_exp_date, "yyyy-MM-dd", "dd/MM/yyyy")
 
                 view.txtAmountToPay.text = orderDetailData.Payment_amt
+                uId = orderDetailData.uniqueCode
+                if (orderDetailData.orderStatus.equals("Cancel")) {
+                    view.btnCancel.isEnabled = false
+                    view.btnOrderDelivered.isEnabled = false
+                }
+                if (orderDetailData.orderStatus.equals("Delivered")) {
+                    view.btnOrderDelivered.isEnabled = false
+                    view.btnCancel.isEnabled = false
+                }
 
             } else {
-                Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, response!!.data!!.responseMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun observeCancelOrderStatus(view: View) {
+        cancelOrderViewModel.response.observe(this, Observer { response ->
+
+            if (response != null && response.status == Status.SUCCESS) {
+                if (response.data!!.data.equals("Done")) {
+                    view.btnCancel.isEnabled = false
+                    view.btnOrderDelivered.isEnabled = false
+                    CommonMethod.showCustomToast(activity!!.applicationContext, response.data.responseMessage)
+                }
+            } else {
+                CommonMethod.showCustomToast(activity!!.applicationContext, response!!.data!!.responseMessage)
+            }
+        })
+    }
+
+    private fun observeOrderDeliveredStatus(view: View) {
+        orderDeliveredViewModel.response.observe(this, Observer { response ->
+
+            if (response != null && response.status == Status.SUCCESS) {
+                if (response.data!!.data.equals("Done")) {
+                    view.btnOrderDelivered.isEnabled = false
+                    view.btnCancel.isEnabled = false
+                    CommonMethod.showCustomToast(activity!!.applicationContext, response.data.responseMessage)
+                }
+            } else {
+                CommonMethod.showCustomToast(activity!!.applicationContext, response!!.data!!.responseMessage)
             }
         })
     }

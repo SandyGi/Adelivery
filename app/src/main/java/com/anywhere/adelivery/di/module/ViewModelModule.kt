@@ -53,5 +53,15 @@ interface ViewModelModule {
     fun bindOrderDetailViewModel(orderDetailViewModel: OrderDetailViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(CancelOrderViewModel::class)
+    fun bindCancelOrderViewModel(cancelOrderViewModel: CancelOrderViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OrderDeliveredViewModel::class)
+    fun bindOrderDeliveredViewModel(orderDeliveredViewModel: OrderDeliveredViewModel): ViewModel
+
+    @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }
