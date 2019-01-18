@@ -1,175 +1,188 @@
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         tools:context=".ui.fragment.MyDetailFragment">
 
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilEnterOTP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintEnd_toStartOf="@id/iconPickUpLocation"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintVertical_bias="0.20"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp">
-
-        <android.support.design.widget.TextInputEditText
-                android:id="@+id/tiEdtPickUpLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:hint="@string/str_pick_up_location"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <ImageView
-            android:id="@+id/iconPickUpLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_location_on_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@id/tilEnterOTP"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="8dp"/>
-
-
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilDropLocation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/tilEnterOTP"
-            app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp">
-
-        <android.support.design.widget.TextInputEditText
-                android:id="@+id/tiEdtDropLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:hint="@string/str_drop_location"/>
-
-    </android.support.design.widget.TextInputLayout>
-    <ImageView
-            android:id="@+id/iconDropLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_location_on_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@id/tilDropLocation"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="8dp"/>
-
-
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilAlternateMobileNo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/tilDropLocation"
-            app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp">
-
-        <android.support.design.widget.TextInputEditText
-                android:id="@+id/tiAlternateMobileNo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:maxLength="10"
-                android:inputType="phone"
-                android:hint="@string/str_mobile_number_alternate"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilDetailOfDelivery"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/tilAlternateMobileNo"
-            app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp">
-
-        <android.support.design.widget.TextInputEditText
-                android:id="@+id/tiDetailOfDelivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:hint="@string/str_detail_of_delivery"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-            android:id="@+id/tilDeliveryDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/tilDetailOfDelivery"
-            app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp">
-
-        <android.support.design.widget.TextInputEditText
-                android:id="@+id/tiDeliveryDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:focusable="false"
-                android:inputType="date"
-                android:hint="@string/str_delivery_date"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <ImageView
-            android:id="@+id/iconCalender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_perm_contact_calendar_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@id/tilDeliveryDate"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="8dp"/>
-
-    <TextView
-            android:id="@+id/txtModOfPayment"
+    <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tilDeliveryDate"
-            android:text="@string/str_mode_of_payment_cod"
-            android:layout_margin="8dp"
-            android:padding="8dp"/>
+            android:layout_height="match_parent">
 
-    <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:background="@color/colorAccent"
-            android:layout_margin="8dp"
-            android:textSize="18sp"
-            android:text="@string/str_submit"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.92"/>
-    <include layout="@layout/charges_layout"/>
-</android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit">
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilEnterOTP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintEnd_toStartOf="@id/iconPickUpLocation"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiEdtPickUpLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:hint="@string/str_pick_up_location"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                    android:id="@+id/iconPickUpLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_location_on_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tilEnterOTP"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="8dp"/>
+
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilDropLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/tilEnterOTP"
+                    app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiEdtDropLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:hint="@string/str_drop_location"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                    android:id="@+id/iconDropLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_location_on_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tilDropLocation"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="8dp"/>
+
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilAlternateMobileNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDropLocation"
+                    app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiAlternateMobileNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:maxLength="10"
+                        android:inputType="phone"
+                        android:hint="@string/str_mobile_number_alternate"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilDetailOfDelivery"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/tilAlternateMobileNo"
+                    app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiDetailOfDelivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:hint="@string/str_detail_of_delivery"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilDeliveryDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDetailOfDelivery"
+                    app:layout_constraintEnd_toStartOf="@id/iconDropLocation"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp">
+
+                <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tiDeliveryDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:focusable="false"
+                        android:inputType="date"
+                        android:hint="@string/str_delivery_date"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                    android:id="@+id/iconCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_perm_contact_calendar_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tilDeliveryDate"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="8dp"/>
+
+            <TextView
+                    android:id="@+id/txtModOfPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDeliveryDate"
+                    android:text="@string/str_mode_of_payment_cod"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"/>
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@color/colorAccent"
+                android:layout_margin="8dp"
+                android:textSize="18sp"
+                android:text="@string/str_submit"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.92"/>
+
+        <include layout="@layout/charges_layout"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
