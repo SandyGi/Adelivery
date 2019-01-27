@@ -3,6 +3,7 @@ package com.anywhere.adelivery.utils
 import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AlertDialog
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -48,5 +49,6 @@ class CommonMethod {
 
             return str
         }
+
     }
 }

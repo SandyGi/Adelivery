@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mMainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black">
+
+        <ImageView
+                android:id="@+id/imgBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/appName"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/pickup_left_margin"
+                android:visibility="gone"
+                app:srcCompat="@drawable/back_btn"/>
+
+        <TextView
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/padding_top"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/actionbar_text_size"
+                android:textStyle="bold"/>
+
+    </RelativeLayout>
+    <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/map_bottom_margin"
+            android:layout_marginTop="@dimen/padding_top"
+            tools:context=".ui.activity.MapActivity"/>
+
+    <LinearLayout
+            android:id="@+id/llCurrentLoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_right_loc"
+            android:layout_marginRight="@dimen/margin_right_loc"
+            android:layout_marginTop="@dimen/large_padding_top"
+            android:background="@drawable/rounded_blackedt_bg"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                    android:id="@+id/edtCurrentLoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/loc_margin"
+                    android:layout_margin="@dimen/small_margin"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="@string/str_pick_up_location"
+                    android:textColor="@color/white"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textCursorDrawable="@drawable/edittxt_cursor_colour"
+                    android:textSize="@dimen/normal_text"/>
+
+            <ImageView
+                    android:layout_width="@dimen/margin_top"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:src="@drawable/pickup_location"/>
+
+        </RelativeLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/black"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                    android:id="@+id/edtDestLoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/loc_margin"
+                    android:layout_margin="@dimen/small_margin"
+                    android:layout_marginLeft="@dimen/margin_top"
+                    android:layout_marginTop="@dimen/loc_margin"
+                    android:background="@android:color/transparent"
+                    android:cursorVisible="false"
+                    android:gravity="center"
+                    android:hint="@string/str_drop_location"
+                    android:textColor="@color/white"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textCursorDrawable="@drawable/edittxt_cursor_colour"
+                    android:textSize="14dp"/>
+            <ImageView
+                    android:id="@+id/ivDest"
+                    android:layout_width="@dimen/margin_top"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:src="@drawable/destination_location"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llCurrentLoc"
+            android:layout_margin="@dimen/normal_margin"
+            android:background="@drawable/rounded_corner_list_bg"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone"
+    />
+
+    <TextView
+            android:id="@+id/txtDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/loc_margin"
+            android:layout_margin="@dimen/margin_top"
+            android:layout_alignParentBottom="true"
+            android:text="51321"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14dp"/>
+</RelativeLayout>

@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,7 @@ import com.anywhere.adelivery.data.request.PickUpLocation
 import com.anywhere.adelivery.data.request.ProductDelivery
 import com.anywhere.adelivery.listener.ChangeFragmentListener
 import com.anywhere.adelivery.ui.activity.CONFIRMATION_FRAGMENT
-import com.anywhere.adelivery.ui.activity.RegistrationActivity
+import com.anywhere.adelivery.ui.activity.MapActivity
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.ProductDetailViewModel
 import dagger.android.support.DaggerFragment
@@ -78,6 +79,10 @@ class ScheduleDeliveryFragment : DaggerFragment() {
         view.btnSubmit.setOnClickListener {
             productDetailViewModel.createdDeliveryDetail(getProductDetail(view))
         }
+        view.iconPickUpLocation.setOnClickListener {
+            var intent = Intent(activity, MapActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
 
@@ -114,4 +119,4 @@ class ScheduleDeliveryFragment : DaggerFragment() {
             }
         })
     }
-}// Required empty public constructor
+}

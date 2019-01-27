@@ -36,17 +36,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     //Android lib dependencies
     implementation AppDependencies.gson
     implementation AppDependencies.moshi
     implementation AppDependencies.glide
-//    implementation AppDependencies.dagger
+    //    implementation AppDependencies.dagger
     implementation AppDependencies.timber
     implementation AppDependencies.rxJava
     implementation AppDependencies.okHttp
@@ -60,7 +63,7 @@ dependencies {
     implementation AppDependencies.roomRuntime
     implementation AppDependencies.okHttpLogger
     implementation AppDependencies.kotlinSupport
-//    implementation AppDependencies.daggerSupport
+    //    implementation AppDependencies.daggerSupport
     implementation AppDependencies.moshiConverter
     implementation AppDependencies.rxJavaReactive
     implementation AppDependencies.retrofitAdapter
@@ -77,20 +80,21 @@ dependencies {
     implementation AppDependencies.androidSupportAppCompat7
     implementation AppDependencies.androidSupportRecyclerView
     implementation AppDependencies.androidSupportVectorDrawable
-//    kapt AppDependencies.daggerCompiler
-
+    //    kapt AppDependencies.daggerCompiler
     implementation 'com.google.dagger:dagger:2.16'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     kapt 'com.google.dagger:dagger-compiler:2.16'
     implementation 'com.google.dagger:dagger-android-support:2.16'
     kapt 'com.google.dagger:dagger-android-processor:2.16'
-
     //Testing lib dependencies
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation AppDependencies.jUnit
     testImplementation AppDependencies.mockito
     androidTestImplementation AppDependencies.mockitoTest
     androidTestImplementation AppDependencies.supportTestRunner
     androidTestImplementation AppDependencies.supportEspressoRunner
-
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
 }
