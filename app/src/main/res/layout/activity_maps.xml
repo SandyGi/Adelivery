@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/main_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+        <ImageView
+                android:id="@+id/img_back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/app_name"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:layout_marginLeft="@dimen/pickup_left_margin"
+                app:srcCompat="@drawable/ic_arrow_back_black"/>
+
+        <TextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/padding_top"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/actionbar_text_size"
+                android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/padding_top"
+            tools:context=".activities.MapsActivity"/>
+
+    <LinearLayout
+            android:id="@+id/li_layout_current_loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_right_loc"
+            android:layout_marginRight="@dimen/margin_right_loc"
+            android:layout_marginTop="@dimen/large_padding_top"
+            android:background="@drawable/rounded_blackedt_bg"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                    android:id="@+id/edt_current_loc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/loc_margin"
+                    android:layout_margin="@dimen/small_margin"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/str_pick_up_location"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|start"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textCursorDrawable="@drawable/edittxt_cursor_colour"
+                    android:layout_toEndOf="@+id/iv_pick_up"
+                    android:textSize="@dimen/normal_text"/>
+
+            <ImageView
+                    android:id="@+id/iv_pick_up"
+                    android:layout_width="@dimen/margin_top"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:src="@drawable/pickup_location"/>
+
+        </RelativeLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/black"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                    android:id="@+id/edt_dest_loc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/loc_margin"
+                    android:layout_margin="@dimen/small_margin"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/str_drop_location"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|start"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textCursorDrawable="@drawable/edittxt_cursor_colour"
+                    android:textSize="@dimen/normal_text"
+                    android:layout_toEndOf="@+id/iv_dest"/>
+
+            <ImageView
+                    android:id="@+id/iv_dest"
+                    android:layout_width="@dimen/margin_top"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:src="@drawable/destination_location"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/li_layout_current_loc"
+            android:layout_margin="@dimen/normal_margin"
+            android:background="@drawable/rounded_corner_list_bg"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="gone"
+            />
+
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabSetAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_check_black_24dp"
+            app:elevation="5dp"
+            android:layout_margin="16dp"/>
+
+</RelativeLayout>

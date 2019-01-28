@@ -150,4 +150,7 @@
     <string name="admin_9021580768">9021580768/ 8130904435</string>
     <string name="title_activity_map">Map</string>
     <string name="connection_failed">Google Places API connection failed with error code</string>
+    <string name="internet_error">No Internet connection</string>
+    <string name="str_error_please_enter_pick_address">Please enter pick location</string>
+    <string name="str_error_please_enter_drop_address">Please enter drop location</string>
 </resources>

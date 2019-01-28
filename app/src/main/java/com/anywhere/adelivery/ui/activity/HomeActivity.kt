@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -81,6 +82,10 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         val fragmentManager = supportFragmentManager // For AppCompat use getSupportFragmentManager
 
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 

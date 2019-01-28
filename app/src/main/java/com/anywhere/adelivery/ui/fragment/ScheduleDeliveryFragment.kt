@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
@@ -20,7 +21,8 @@ import com.anywhere.adelivery.data.request.PickUpLocation
 import com.anywhere.adelivery.data.request.ProductDelivery
 import com.anywhere.adelivery.listener.ChangeFragmentListener
 import com.anywhere.adelivery.ui.activity.CONFIRMATION_FRAGMENT
-import com.anywhere.adelivery.ui.activity.MapActivity
+import com.anywhere.adelivery.ui.activity.MapsActivity
+import com.anywhere.adelivery.utils.Constants
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.ProductDetailViewModel
 import dagger.android.support.DaggerFragment
@@ -37,7 +39,16 @@ class ScheduleDeliveryFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var productDetailViewModel: ProductDetailViewModel
 
+    private var mView: View? = null
+
+    private val ADDRESS_REQUEST = 11
     private lateinit var changeFragmentListener: ChangeFragmentListener
+    private var mSrcLatitude: Double? = null
+    private var mSrcLongitude: Double? = null
+    private var mDestLatitude: Double? = null
+    private var mDestLongitude: Double? = null
+    private var mTotalAmount = 0
+
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -54,6 +65,7 @@ class ScheduleDeliveryFragment : DaggerFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_schedule_delivery, container, false)
+        this.mView = view
         productDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(ProductDetailViewModel::class.java)
         observeProductDeliveryStatus()
 
@@ -80,23 +92,39 @@ class ScheduleDeliveryFragment : DaggerFragment() {
             productDetailViewModel.createdDeliveryDetail(getProductDetail(view))
         }
         view.iconPickUpLocation.setOnClickListener {
-            var intent = Intent(activity, MapActivity::class.java)
-            startActivity(intent)
+            var intent = Intent(activity, MapsActivity::class.java)
+            startActivityForResult(intent, ADDRESS_REQUEST)
         }
         return view
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == ADDRESS_REQUEST && resultCode == Activity.RESULT_OK) {
+
+            mView!!.tiEdtPickUpLocation.setText(data!!.getStringExtra(Constants.EXTRA_PICK_UP_ADDRESS))
+            mView!!.tiEdtDropLocation.setText(data.getStringExtra(Constants.EXTRA_DROP_ADDRESS))
+            mTotalAmount = (data.getIntExtra(Constants.EXTRA_DISTANCE, 0)) * 4
+            mSrcLatitude = data.getDoubleExtra(Constants.EXTRA_PICKUP_LAT, 0.toDouble())
+            mSrcLongitude = data.getDoubleExtra(Constants.EXTRA_PICKUP_LONG, 0.toDouble())
+            mDestLatitude = data.getDoubleExtra(Constants.EXTRA_DROP_LAT, 0.toDouble())
+            mDestLongitude = data.getDoubleExtra(Constants.EXTRA_DROP_LONG, 0.toDouble())
+        }
+
+    }
+
     private fun getProductDetail(view: View): DeliveryRequest {
 
-        var pickUpLocation = PickUpLocation(view.tiEdtPickUpLocation.text.toString(), "18.510081", "73.807788")
-        var dropLocation = DropLocation(view.tiEdtDropLocation.text.toString(), "18.515536", "73.928794")
+        var pickUpLocation = PickUpLocation(view.tiEdtPickUpLocation.text.toString(), "$mSrcLatitude", "$mSrcLongitude")
+        var dropLocation = DropLocation(view.tiEdtDropLocation.text.toString(), "$mDestLatitude", "$mDestLongitude")
         var productDelivery = ProductDelivery(
             view.tiAlternateMobileNo.text.toString(),
             view.tiDetailOfDelivery.text.toString(),
-            "Pune",
+            "",
             view.tiDeliveryDate.text.toString(),
             "COD",
-            "400",
+            "$mTotalAmount",
             pickUpLocation,
             dropLocation
         )
