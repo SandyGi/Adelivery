@@ -112,6 +112,8 @@ class ScheduleDeliveryFragment : DaggerFragment() {
             mDestLongitude = data.getDoubleExtra(Constants.EXTRA_DROP_LONG, 0.toDouble())
         }
 
+
+
     }
 
     private fun getProductDetail(view: View): DeliveryRequest {
