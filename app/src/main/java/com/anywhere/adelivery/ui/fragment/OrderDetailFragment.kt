@@ -13,7 +13,6 @@ import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Status
 import com.anywhere.adelivery.data.request.CancelOrderRequest
 import com.anywhere.adelivery.utils.CommonMethod
-import com.anywhere.adelivery.utils.CommonMethod.Companion.changeDateFormat
 import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.CancelOrderViewModel
 import com.anywhere.adelivery.viewmodel.OrderDeliveredViewModel
@@ -73,8 +72,8 @@ class OrderDetailFragment : DaggerFragment() {
                 view.txtPickUpAddress.text = orderDetailData.pickupLocation
                 view.txtDropAddress.text = orderDetailData.dropLocation
 
-                view.txtDeliveryDate.text =
-                        changeDateFormat(orderDetailData.delivery_exp_date, "yyyy-MM-dd", "dd/MM/yyyy")
+                view.txtDeliveryDate.text = orderDetailData.delivery_exp_date
+//                        changeDateFormat(orderDetailData.delivery_exp_date, "yyyy-MM-dd", "dd/MM/yyyy")
 
                 view.txtAmountToPay.text = orderDetailData.Payment_amt
                 uId = orderDetailData.uniqueCode

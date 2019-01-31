@@ -78,7 +78,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/tilDropLocation"
                     android:textColor="@android:color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_margin="8dp"/>
+                    android:layout_margin="8dp"
+                    android:visibility="invisible"/>
 
 
             <android.support.design.widget.TextInputLayout
@@ -166,6 +167,21 @@
                     android:text="@string/str_mode_of_payment_cod"
                     android:layout_margin="8dp"
                     android:padding="8dp"/>
+
+            <Button android:id="@+id/btnPickImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/txtModOfPayment"
+                    android:layout_margin="8dp"
+                    android:text="Upload Image"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvProductImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/btnPickImage"/>
+
         </android.support.constraint.ConstraintLayout>
 
         <Button

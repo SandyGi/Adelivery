@@ -40,5 +40,8 @@ interface ApiInterface {
     @POST("order/updateToDeliver.php")
     fun orderDelivered(@Body cancelOrderRequest: CancelOrderRequest): Observable<ApiResponse>
 
+    @POST("order/upload_image.php")
+    fun uploadProductImage()
+
 
 }

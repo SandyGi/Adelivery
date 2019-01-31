@@ -18,6 +18,9 @@ public class Constants {
     public static String EXTRA_PICKUP_LONG = "pickupLong";
     public static String EXTRA_DROP_LAT = "dropLat";
     public static String EXTRA_DROP_LONG = "dropLong";
+    public static String ADMIN_EMAIL_ID = "infoadeliverys@gmail.com";
+    public static String ADMIN_PASSWORD = "Adelivery@19";
+    public static String ADMIN_RECIPIENT = "adeliverys@gmail.com";
 
     /**
      * The constant UPDATE_INTERVAL_IN_MILLISECONDS.

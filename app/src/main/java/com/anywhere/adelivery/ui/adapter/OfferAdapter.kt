@@ -45,8 +45,8 @@ class OfferAdapter(val context: Context, offerList: List<Offers>) : PagerAdapter
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
 
         val view = layoutInflater!!.inflate(R.layout.offer_list_layout, container, false)
-        view.txtOfferDescription.text = offerList[position].description
-        view.txtOfferName.text = offerList[position].offerName
+//        view.txtOfferDescription.text = offerList[position].description
+        view.txtOfferName.text = offerList[position].description
 //        Glide.with(mContext!!).load(offerList!![position].offerImage).into(view.imgOffer)
         container.addView(view, 0)
         return view

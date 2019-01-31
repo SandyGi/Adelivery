@@ -16,6 +16,7 @@ import com.anywhere.adelivery.data.request.CreatedUserDetailRequest
 import com.anywhere.adelivery.data.request.UserDetails
 import com.anywhere.adelivery.ui.activity.RegistrationActivity
 import com.anywhere.adelivery.ui.activity.SCHEDULE_DELIVERY_FRAGMENT
+import com.anywhere.adelivery.utils.CommonMethod
 import com.anywhere.adelivery.viewmodel.CreateUserViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_my_detail.view.*
@@ -41,10 +42,27 @@ class MyDetailFragment : DaggerFragment() {
         val view = inflater.inflate(R.layout.fragment_my_detail, container, false)
 
         userDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(CreateUserViewModel::class.java)
-        observeExistingUserStatus()
+        observeExistingUserStatus(view)
         view.btnNext.setOnClickListener {
 
-            userDetailViewModel.createdUserDetail(setUserDetail(view))
+            if (!view.edtFullName.text.toString().equals("")) {
+                if (view.edtMobileNumber.text.toString().length == 10) {
+                    if (!view.edtEmail.text.toString().equals("")) {
+                        if (!view.edtCity.text.toString().equals("")) {
+
+                            userDetailViewModel.createdUserDetail(setUserDetail(view))
+                        } else {
+                            CommonMethod.showCustomToast(activityContext, "Please enter city")
+                        }
+                    } else {
+                        CommonMethod.showCustomToast(activityContext, "Please enter email address.")
+                    }
+                } else {
+                    CommonMethod.showCustomToast(activityContext, "Please enter valid mobile number.")
+                }
+            } else {
+                CommonMethod.showCustomToast(activityContext, "Please enter your name.")
+            }
 
         }
         return view
@@ -66,12 +84,13 @@ class MyDetailFragment : DaggerFragment() {
         return CreatedUserDetailRequest(AdeliveryApplication.prefHelper!!.userId, userDetail)
     }
 
-    private fun observeExistingUserStatus() {
+    private fun observeExistingUserStatus(view: View) {
         userDetailViewModel.response.observe(this, Observer { response ->
 
             if (response != null && response.status == Status.SUCCESS) {
                 if (response.data!!.data.equals("Done")) {
                     activityContext.displaySelectedScreen(SCHEDULE_DELIVERY_FRAGMENT, null)
+                    AdeliveryApplication.prefHelper!!.getUserName = view.edtFullName.text.toString()
                 }
             } else {
                 Toast.makeText(activityContext, "Server Side Error", Toast.LENGTH_SHORT).show()

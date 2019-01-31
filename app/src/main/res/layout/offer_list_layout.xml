@@ -12,14 +12,14 @@
             android:id="@+id/txtOfferName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="16sp"
-            android:maxLines="2"
-            android:textStyle="bold"
+            android:textSize="18sp"
+            android:maxLines="5"
             android:padding="8dp"
+            android:minLines="5"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.035"/>
+            app:layout_constraintVertical_bias="0.03"/>
 
     <TextView
             android:text="TextView"
@@ -30,6 +30,7 @@
             android:minLines="7"
             android:maxLines="7"
             android:padding="8dp"
+            android:visibility="gone"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/txtOfferName"
             app:layout_constraintStart_toStartOf="parent"

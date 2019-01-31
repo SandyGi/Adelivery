@@ -82,29 +82,33 @@ class OfferActivity : DaggerAppCompatActivity() {
         }, 2000, 3000)
         btnScheduleDelivery.setOnClickListener {
 
-            val layoutInflater = LayoutInflater.from(this)
-            val view = layoutInflater.inflate(R.layout.custom_edt_dialog, null)
-
-            val alertDialog = AlertDialog.Builder(this)
-            alertDialog.setView(view)
-
-            alertDialog.setCancelable(false)
-                .setPositiveButton("Next") { _, _ ->
-                    if (!view.userInputDialog.text.equals("") && view.userInputDialog.length() == 10) {
-                        observeExistingUserStatus(view)
-                        existingUserViewModel.getExistingUser(view.userInputDialog.text.toString())
-                    } else {
-                        Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
-                .setNegativeButton("Cancel") { _, _ ->
-
-                }
-            alertDialog.show()
+            showLoginDialog()
 
         }
         updateIndicator()
+    }
+
+    private fun showLoginDialog() {
+        val layoutInflater = LayoutInflater.from(this)
+        val view = layoutInflater.inflate(R.layout.custom_edt_dialog, null)
+
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setView(view)
+
+        alertDialog.setCancelable(false)
+            .setPositiveButton("Next") { _, _ ->
+                if (!view.userInputDialog.text.equals("") && view.userInputDialog.length() == 10) {
+                    observeExistingUserStatus(view)
+                    existingUserViewModel.getExistingUser(view.userInputDialog.text.toString())
+                } else {
+                    Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            .setNegativeButton("Cancel") { _, _ ->
+
+            }
+        alertDialog.show()
     }
 
     private fun updateIndicator() {

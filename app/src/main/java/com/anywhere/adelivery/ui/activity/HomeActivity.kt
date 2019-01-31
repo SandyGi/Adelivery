@@ -1,6 +1,7 @@
 package com.anywhere.adelivery.ui.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
+import com.anywhere.adelivery.bsimagepicker.BSImagePicker
 import com.anywhere.adelivery.listener.ChangeFragmentListener
 import com.anywhere.adelivery.ui.fragment.*
 import com.anywhere.adelivery.utils.CommonMethod
@@ -21,7 +23,7 @@ import kotlinx.android.synthetic.main.nav_header_home.view.*
 const val ORDER_DETAIL_FRAGMENT = 102
 
 class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    ChangeFragmentListener {
+    ChangeFragmentListener, BSImagePicker.OnMultiImageSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,13 +82,26 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             fragment.arguments = bundle
         }
         val fragmentManager = supportFragmentManager // For AppCompat use getSupportFragmentManager
+        if (fragment is ScheduleDeliveryFragment) {
+            fragmentManager.beginTransaction()
+                .replace(R.id.container, fragment, ScheduleDeliveryFragment::class.java.name).commit()
+        } else {
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        }
 
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+    override fun onMultiImageSelected(uriList: MutableList<Uri>?, tag: String?) {
+//        for (i in 0 until uriList!!.size) {
+//            Log.e("Multi Image", uriList[i].toString())
+        val fragment = supportFragmentManager.findFragmentByTag(ScheduleDeliveryFragment::class.java.name) as ScheduleDeliveryFragment
+
+        fragment.onMultiImageSelected(uriList, tag)
+//        }
+    }
 
 }

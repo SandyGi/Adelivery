@@ -313,21 +313,6 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         });
     }
 
-    public static int getDistance(LatLng latlngA, LatLng latlngB) {
-        Location locationA = new Location("point A");
-
-        locationA.setLatitude(latlngA.latitude);
-        locationA.setLongitude(latlngA.longitude);
-
-        Location locationB = new Location("point B");
-
-        locationB.setLatitude(latlngB.latitude);
-        locationB.setLongitude(latlngB.longitude);
-
-        float distance = locationA.distanceTo(locationB) / 1000;//To convert Meter in Kilometer
-        return Math.round(distance);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -337,7 +322,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         if (isNetworkConnected) {
             initialiseViews();
 
-            PermissionChecker.init(this);
+//            PermissionChecker.init(this);
             mLocationUtils = new LocationUtils(this, this);
             mLocationUtils.createLocationRequest();
             mLocationUtils.buildLocationSettingsRequest();
@@ -364,6 +349,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         fabAddressButton = findViewById(R.id.fabSetAddress);
         imgBackButton.setOnClickListener(this);
         fabAddressButton.setOnClickListener(this);
+
 
     }
 
@@ -587,7 +573,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra(Constants.EXTRA_PICK_UP_ADDRESS, mCurrentLoc.getText().toString());
                         returnIntent.putExtra(Constants.EXTRA_DROP_ADDRESS, mDestinationLoc.getText().toString());
-                        returnIntent.putExtra(Constants.EXTRA_DISTANCE, getDistance(mSrcLatLng, mDestLatLng));
+                        returnIntent.putExtra(Constants.EXTRA_DISTANCE, CommonMethodJava.getDistance(mSrcLatLng, mDestLatLng));
                         returnIntent.putExtra(Constants.EXTRA_PICKUP_LAT, mSrcLatLng.latitude);
                         returnIntent.putExtra(Constants.EXTRA_PICKUP_LONG, mSrcLatLng.longitude);
                         returnIntent.putExtra(Constants.EXTRA_DROP_LAT, mDestLatLng.latitude);
@@ -647,16 +633,18 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
             return;
         }
         Location selfLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        if (mSrcLatLng != null){
 
-        mSrcLatLng = new LatLng(selfLocation.getLatitude(), selfLocation.getLongitude());
+            mSrcLatLng = new LatLng(selfLocation.getLatitude(), selfLocation.getLongitude());
+            LocationAddress locationAddress = new LocationAddress();
+            locationAddress.getAddressFromLocation(selfLocation.getLatitude(), selfLocation.getLongitude(), MapsActivity.this, new GeocoderHandler());
 
-        LocationAddress locationAddress = new LocationAddress();
-        locationAddress.getAddressFromLocation(selfLocation.getLatitude(), selfLocation.getLongitude(), MapsActivity.this, new GeocoderHandler());
+            mMap.addMarker(new MarkerOptions().position(mSrcLatLng).icon(BitmapDescriptorFactory.
+                    fromBitmap(createCustomPinMarker(MapsActivity.this, R.drawable.pickuppin))));
+            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(mSrcLatLng, 16);
+            mMap.moveCamera(update);
+        }
 
-        mMap.addMarker(new MarkerOptions().position(mSrcLatLng).icon(BitmapDescriptorFactory.
-                fromBitmap(createCustomPinMarker(MapsActivity.this, R.drawable.pickuppin))));
-        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(mSrcLatLng, 16);
-        mMap.moveCamera(update);
     }
 
     /**
@@ -738,7 +726,6 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         }
     }
 
-
     private class GeocoderHandler extends Handler {
 
         @Override
@@ -751,7 +738,6 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
                     break;
                 default:
                     locationAddress = null;
-
             }
 
             mCurrentLoc.setText(locationAddress);

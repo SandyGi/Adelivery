@@ -151,8 +151,6 @@ public class LocationUtils implements PermissionCallback {
             CommonMethodJava.permissionChecker(mContext, permissions, LocationUtils.this);
 
         }
-
-
     }
 
 

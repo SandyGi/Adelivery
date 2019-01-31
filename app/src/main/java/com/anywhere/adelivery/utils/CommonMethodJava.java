@@ -2,11 +2,13 @@ package com.anywhere.adelivery.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.anywhere.adelivery.listener.PermissionCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.maps.model.LatLng;
 
 public class CommonMethodJava {
 
@@ -45,7 +47,25 @@ public class CommonMethodJava {
         PermissionChecker.askForPermission(context, permissions, permissionCallback);
     }
 
-    public static void showToast(Context context, String message){
+    public static void showToast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
+
+    public static float getDistance(LatLng latlngA, LatLng latlngB) {
+        Location locationA = new Location("point A");
+
+        locationA.setLatitude(latlngA.latitude);
+        locationA.setLongitude(latlngA.longitude);
+
+        Location locationB = new Location("point B");
+
+        locationB.setLatitude(latlngB.latitude);
+        locationB.setLongitude(latlngB.longitude);
+
+        float distance = locationA.distanceTo(locationB) / 1000;//To convert Meter in Kilometer
+        return Math.round(distance);
+    }
+
+
+
 }

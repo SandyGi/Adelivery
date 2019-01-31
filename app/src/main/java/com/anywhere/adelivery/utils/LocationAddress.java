@@ -31,6 +31,7 @@ public class LocationAddress {
                         for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                             sb.append(address.getAddressLine(i)).append("\n");
                         }
+
                         sb.append(address.getPremises()).append(", ");
                         sb.append(address.getSubThoroughfare()).append(", ");
                         sb.append(address.getThoroughfare()).append(", ");
