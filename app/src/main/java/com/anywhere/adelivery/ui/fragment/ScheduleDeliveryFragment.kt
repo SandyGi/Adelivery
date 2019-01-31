@@ -156,6 +156,8 @@ class ScheduleDeliveryFragment : DaggerFragment(), PermissionCallback {
             Log.e("Total Amount", "${mTotalAmount!! * 8}")
         }
 
+
+
     }
 
     private fun getProductDetail(view: View): DeliveryRequest {
