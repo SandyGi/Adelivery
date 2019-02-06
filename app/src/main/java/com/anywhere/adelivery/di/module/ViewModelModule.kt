@@ -63,5 +63,10 @@ interface ViewModelModule {
     fun bindOrderDeliveredViewModel(orderDeliveredViewModel: OrderDeliveredViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(UploadImageViewModel::class)
+    fun bindUploadImageViewModel(uploadImageViewModel: UploadImageViewModel): ViewModel
+
+    @Binds
     fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }

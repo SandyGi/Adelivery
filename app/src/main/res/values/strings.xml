@@ -93,7 +93,7 @@
     <string name="str_contact_us">Contact Us</string>
     <string name="str_term_amp_condition"><![CDATA[Term & Condition]]></string>
     <string name="str_confirmation_detail">Confirmation</string>
-    <string name="str_first_delivery_free_n_for_you">First Delivery Free\n for you.</string>
+    <string name="str_first_delivery_free_n_for_you"><![CDATA[ First Delivery Free<sup><small>T*C</small></sup> <br /> for you.]]></string>
     <string name="str_schedule_your_delivery">Schedule your delivery</string>
     <string name="str_next">Next</string>
     <string name="str_we_charge_rs_2_km_min_rs_15_for_single_delivery">We charge Rs. 2/km, min Rs.15 for single
@@ -151,6 +151,7 @@
         \n\n 9. \t For offline orders please contact us directly through mail or by call.
         \n\n 10.\t  For shopping as required please upload list image, \n
         (Extra Charges will be applicable, up to 5% of total bill).
+        \n\n 10.\t  First delivery free up to Rs.25, afterwards amount will be payable and night charges will be extra as applicable.
     </string>
     <string name="admin_9021580768">9021580768/ 8130904435</string>
     <string name="title_activity_map">Map</string>

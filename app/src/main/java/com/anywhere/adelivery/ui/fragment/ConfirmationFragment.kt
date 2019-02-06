@@ -28,6 +28,7 @@ import com.anywhere.adelivery.utils.ORDER_ID
 import com.anywhere.adelivery.viewmodel.ConfirmationViewModel
 import com.google.android.gms.common.internal.service.Common
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.app_header_layout.view.*
 import kotlinx.android.synthetic.main.fragment_confirmation.view.*
 import javax.inject.Inject
 
@@ -75,6 +76,7 @@ class ConfirmationFragment : DaggerFragment() {
         Log.e("Confirmation fragment ", "$orderId")
 
         observeConfirmationStatus()
+        view.txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
         view.btnConfirm.setOnClickListener {
             if (!view.tiEdtOTP.text.toString().equals("") && view.tiEdtOTP.text.toString().length == 4) {
                 confirmationViewModel.doConfirmation(doConfirmation(view))
@@ -82,12 +84,13 @@ class ConfirmationFragment : DaggerFragment() {
                 CommonMethod.showCustomToast(activity!!, "Please enter valid OTP.")
             }
         }
-        dialog = ProgressDialog(activity)
+        dialog = ProgressDialog(activity, R.style.MyTheme)
         dialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog!!.setTitle("Loading");
+//        dialog!!.setTitle("Loading");
         dialog!!.setMessage("Loading. Please wait...");
         dialog!!.setIndeterminate(true);
         dialog!!.setCanceledOnTouchOutside(false);
+
         return view
     }
 

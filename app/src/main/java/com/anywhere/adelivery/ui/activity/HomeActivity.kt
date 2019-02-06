@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import android.view.View
 import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.bsimagepicker.BSImagePicker
@@ -35,7 +36,7 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-        txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
+//        txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
 
         nav_view.setNavigationItemSelectedListener(this)
         val view = nav_view.getHeaderView(0)
@@ -95,10 +96,11 @@ class HomeActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    override fun onMultiImageSelected(uriList: MutableList<Uri>?, tag: String?) {
+    override fun onMultiImageSelected(uriList: MutableList<Uri>, tag: String?) {
 //        for (i in 0 until uriList!!.size) {
 //            Log.e("Multi Image", uriList[i].toString())
-        val fragment = supportFragmentManager.findFragmentByTag(ScheduleDeliveryFragment::class.java.name) as ScheduleDeliveryFragment
+        val fragment =
+            supportFragmentManager.findFragmentByTag(ScheduleDeliveryFragment::class.java.name) as ScheduleDeliveryFragment
 
         fragment.onMultiImageSelected(uriList, tag)
 //        }

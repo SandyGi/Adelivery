@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -19,6 +20,7 @@ import com.anywhere.adelivery.ui.activity.SCHEDULE_DELIVERY_FRAGMENT
 import com.anywhere.adelivery.utils.CommonMethod
 import com.anywhere.adelivery.viewmodel.CreateUserViewModel
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.app_header_layout.view.*
 import kotlinx.android.synthetic.main.fragment_my_detail.view.*
 import javax.inject.Inject
 
@@ -27,6 +29,7 @@ class MyDetailFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var userDetailViewModel: CreateUserViewModel
+    private var dialog: ProgressDialog? = null
 
     private var activityContext = RegistrationActivity()
     override fun onAttach(context: Context?) {
@@ -42,17 +45,26 @@ class MyDetailFragment : DaggerFragment() {
         val view = inflater.inflate(R.layout.fragment_my_detail, container, false)
 
         userDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(CreateUserViewModel::class.java)
+
+        dialog = ProgressDialog(activity, R.style.MyTheme)
+        dialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        dialog!!.setTitle("Loading")
+        dialog!!.setMessage("Loading. Please wait...")
+        dialog!!.setIndeterminate(true)
+        dialog!!.setCanceledOnTouchOutside(false)
+
         observeExistingUserStatus(view)
+        view.txtMobileNumber.visibility = View.GONE
         view.btnNext.setOnClickListener {
 
             if (!view.edtFullName.text.toString().equals("")) {
                 if (view.edtMobileNumber.text.toString().length == 10) {
                     if (!view.edtEmail.text.toString().equals("")) {
                         if (!view.edtCity.text.toString().equals("")) {
-
+                            dialog!!.show()
                             userDetailViewModel.createdUserDetail(setUserDetail(view))
                         } else {
-                            CommonMethod.showCustomToast(activityContext, "Please enter city")
+                            CommonMethod.showCustomToast(activityContext, "Please enter city.")
                         }
                     } else {
                         CommonMethod.showCustomToast(activityContext, "Please enter email address.")
@@ -63,7 +75,6 @@ class MyDetailFragment : DaggerFragment() {
             } else {
                 CommonMethod.showCustomToast(activityContext, "Please enter your name.")
             }
-
         }
         return view
     }
@@ -95,6 +106,7 @@ class MyDetailFragment : DaggerFragment() {
             } else {
                 Toast.makeText(activityContext, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
+            dialog!!.dismiss()
         })
     }
 }// Required empty public constructor

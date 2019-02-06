@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -29,6 +30,7 @@ class OrderDetailFragment : DaggerFragment() {
     private lateinit var cancelOrderViewModel: CancelOrderViewModel
     private lateinit var orderDeliveredViewModel: OrderDeliveredViewModel
     private lateinit var uId: String
+    private var dialog: ProgressDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,17 +42,29 @@ class OrderDetailFragment : DaggerFragment() {
         cancelOrderViewModel = ViewModelProviders.of(this, viewModelFactory).get(CancelOrderViewModel::class.java)
         orderDeliveredViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderDeliveredViewModel::class.java)
 
+        view.imgLogo.visibility =View.GONE
+        view.txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
         observeOrderDetailStatus(view)
         observeCancelOrderStatus(view)
         observeOrderDeliveredStatus(view)
+        dialog = ProgressDialog(activity, R.style.MyTheme)
+        dialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+//        dialog!!.setTitle("Loading")
+        dialog!!.setMessage("Loading. Please wait...")
+        dialog!!.setIndeterminate(true)
+        dialog!!.setCanceledOnTouchOutside(false)
+
+        dialog!!.show()
         orderDetailViewModel.getOrderDetail(arguments!!.getString(ORDER_ID))
         view.btnCancel.setOnClickListener {
+            dialog!!.show()
             val cancelOrderRequest =
                 CancelOrderRequest(arguments!!.getString(ORDER_ID), AdeliveryApplication.prefHelper!!.userId, uId)
             cancelOrderViewModel.createdUserDetail(cancelOrderRequest)
         }
 
         view.btnOrderDelivered.setOnClickListener {
+            dialog!!.show()
             val cancelOrderRequest =
                 CancelOrderRequest(arguments!!.getString(ORDER_ID), AdeliveryApplication.prefHelper!!.userId, uId)
             orderDeliveredViewModel.orderDelivered(cancelOrderRequest)
@@ -89,6 +103,7 @@ class OrderDetailFragment : DaggerFragment() {
             } else {
                 Toast.makeText(activity, response!!.data!!.responseMessage, Toast.LENGTH_SHORT).show()
             }
+            dialog!!.dismiss()
         })
     }
 
@@ -104,6 +119,7 @@ class OrderDetailFragment : DaggerFragment() {
             } else {
                 CommonMethod.showCustomToast(activity!!.applicationContext, response!!.data!!.responseMessage)
             }
+            dialog!!.dismiss()
         })
     }
 
@@ -119,6 +135,7 @@ class OrderDetailFragment : DaggerFragment() {
             } else {
                 CommonMethod.showCustomToast(activity!!.applicationContext, response!!.data!!.responseMessage)
             }
+            dialog!!.dismiss()
         })
     }
 }

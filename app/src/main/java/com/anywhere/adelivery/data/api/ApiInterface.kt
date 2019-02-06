@@ -3,10 +3,10 @@ package com.anywhere.adelivery.data.api
 import com.anywhere.adelivery.data.model.entity.*
 import com.anywhere.adelivery.data.request.*
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
+
 
 interface ApiInterface {
     @GET("getOffers.php")
@@ -33,7 +33,6 @@ interface ApiInterface {
     @GET("user/getUserInfo.php")
     fun getUserDetail(@Query("userId") userId: String): Observable<ApiListResponse<UserDetailData>>
 
-
     @POST("order/canceOrder.php")
     fun cancelOrder(@Body cancelOrderRequest: CancelOrderRequest): Observable<ApiResponse>
 
@@ -43,5 +42,8 @@ interface ApiInterface {
     @POST("order/upload_image.php")
     fun uploadProductImage()
 
+    @Multipart
+    @POST("order/upload_image.php")
+    fun uploadAttachment(@Part("order_id") orderId: RequestBody, @Part filePart: MultipartBody.Part): Observable<UploadImageResponse>
 
 }

@@ -124,8 +124,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         @Override
         public void onResult(PlaceBuffer places) {
             if (!places.getStatus().isSuccess()) {
-                Log.e(TAG, "Place query did not complete. Error: " +
-                        places.getStatus().toString());
+                Log.e(TAG, "Place query did not complete. Error: " + places.getStatus().toString());
                 return;
             }
             // Selecting the first object buffer.
@@ -149,10 +148,8 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
             if (listPoints.size() == 1) {
 
                 mMap.clear();
-                mMap.addMarker(
-                        new MarkerOptions().position(mSrcLatLng).icon(BitmapDescriptorFactory.
-                                fromBitmap(createCustomPinMarker(MapsActivity.this,
-                                        R.drawable.pickuppin))));
+                mMap.addMarker(new MarkerOptions().position(mSrcLatLng).icon(BitmapDescriptorFactory.
+                        fromBitmap(createCustomPinMarker(MapsActivity.this, R.drawable.pickuppin))));
                 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(mSrcLatLng, 16);
                 mMap.moveCamera(update);
 
@@ -168,18 +165,12 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
                 mDesLongitude = mDestLatLng.longitude;
 
                 LatLng srcLatLng = new LatLng(mSrcLatitude, mSrcLongitude);
-                mMap.addMarker(new MarkerOptions().position(srcLatLng).icon(BitmapDescriptorFactory.
-                        fromBitmap(
-                                createCustomPinMarker(MapsActivity.this, R.drawable.pickuppin))));
-
-                mDesLatitude = mDestLatLng.latitude;
-                mDesLongitude = mDestLatLng.longitude;
+                mMap.addMarker(new MarkerOptions().position(srcLatLng).icon(BitmapDescriptorFactory.fromBitmap(
+                        createCustomPinMarker(MapsActivity.this, R.drawable.pickuppin))));
 
                 LatLng desLatLng = new LatLng(mDesLatitude, mDesLongitude);
-                mMap.addMarker(new MarkerOptions().position(desLatLng).icon(BitmapDescriptorFactory.
-                        fromBitmap(
-                                createCustomPinMarker(MapsActivity.this,
-                                        R.drawable.destinationpin))));
+                mMap.addMarker(new MarkerOptions().position(desLatLng).icon(BitmapDescriptorFactory.fromBitmap(
+                        createCustomPinMarker(MapsActivity.this, R.drawable.destinationpin))));
 
                 MakeCameraFocus();
 
@@ -197,8 +188,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
                     position);
             final String placeId = String.valueOf(item.placeId);
             Log.i(TAG, "Selected: " + item.description);
-            PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
-                    .getPlaceById(mGoogleApiClient, placeId);
+            PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi.getPlaceById(mGoogleApiClient, placeId);
             placeResult.setResultCallback(mUpdatePlaceDetailsCallbacks);
 
             Log.i(TAG, "Fetching details for ID: " + item.placeId);
@@ -209,8 +199,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         @Override
         public void onResult(PlaceBuffer places) {
             if (!places.getStatus().isSuccess()) {
-                Log.e(TAG, "Place query did not complete. Error: " +
-                        places.getStatus().toString());
+                Log.e(TAG, "Place query did not complete. Error: " + places.getStatus().toString());
                 return;
             }
             // Selecting the first object buffer.
@@ -298,8 +287,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
         int padding = (int) (width * 0.20);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, width,
-                height, padding);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
         int pinShowTime = getResources().getInteger(R.integer.map_pin_time);
         mMap.animateCamera(cameraUpdate, pinShowTime, new GoogleMap.CancelableCallback() {
             @Override
@@ -365,14 +353,11 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
 
 
         mDestinationLoc.setOnItemClickListener(mAutocompleteClickListener);
-        mPlaceArrayAdapter = new PlaceArrayAdapter(this, android.R.layout.simple_list_item_1,
-                BOUNDS_MOUNTAIN_VIEW, null);
+        mPlaceArrayAdapter = new PlaceArrayAdapter(this, android.R.layout.simple_list_item_1, BOUNDS_MOUNTAIN_VIEW, null);
         mDestinationLoc.setAdapter(mPlaceArrayAdapter);
 
         mCurrentLoc.setOnItemClickListener(mAutocompleteCurrentLocClickListener);
-        mPlaceArrayAdapters = new PlaceArrayCurrentLocAdapter(this,
-                android.R.layout.simple_list_item_1,
-                BOUNDS_MOUNTAIN_VIEW, null);
+        mPlaceArrayAdapters = new PlaceArrayCurrentLocAdapter(this, android.R.layout.simple_list_item_1, BOUNDS_MOUNTAIN_VIEW, null);
         mCurrentLoc.setAdapter(mPlaceArrayAdapters);
 
         mDestinationLoc.setOnClickListener(this);
@@ -436,37 +421,21 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
         mRecyclerViewPlaces.addOnItemTouchListener(
                 new RecyclerItemClickListener(this,
                         (view, position) -> {
-                            final PlaceAutocomplete item =
-                                    mAutoCompleteAdapter.getItem(
-                                            position);
+                            final PlaceAutocomplete item = mAutoCompleteAdapter.getItem(position);
                             if (item != null) {
                                 saveSelectedPlaceLocally(item);
-                                mDestinationLoc.setText(
-                                        item.placePrimaryText);
-                                final String placeId = String.valueOf(
-                                        item.placeId);
+                                mDestinationLoc.setText(item.placePrimaryText);
+                                final String placeId = String.valueOf(item.placeId);
 
-                                PendingResult<PlaceBuffer> placeResult =
-                                        Places.GeoDataApi
-                                                .getPlaceById(
-                                                        mGoogleApiClient,
-                                                        placeId);
+                                PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi.getPlaceById(mGoogleApiClient, placeId);
 //                                    mSelectedLocName = item.placePrimaryText;
-                                placeResult.setResultCallback(
-                                        mUpdatePlaceDetailsCallback);
-                                mRecyclerViewPlaces.setVisibility(
-                                        View.GONE);
+//                                placeResult.setResultCallback(
+//                                        mUpdatePlaceDetailsCallback);
+                                mRecyclerViewPlaces.setVisibility(View.GONE);
                             } else {
-                                mRecyclerViewPlaces.setVisibility(
-                                        View.GONE);
-                                InputMethodManager imm =
-                                        ((InputMethodManager)
-                                                getSystemService(
-                                                        Activity.INPUT_METHOD_SERVICE));
-                                imm.hideSoftInputFromWindow(
-                                        getWindow().getCurrentFocus()
-                                                .getWindowToken(),
-                                        0);
+                                mRecyclerViewPlaces.setVisibility(View.GONE);
+                                InputMethodManager imm = ((InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE));
+                                imm.hideSoftInputFromWindow(getWindow().getCurrentFocus().getWindowToken(), 0);
                             }
                         })
         );
@@ -633,7 +602,7 @@ public class MapsActivity extends AppCompatActivity implements LocationListener,
             return;
         }
         Location selfLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-        if (mSrcLatLng != null){
+        if (mSrcLatLng != null) {
 
             mSrcLatLng = new LatLng(selfLocation.getLatitude(), selfLocation.getLongitude());
             LocationAddress locationAddress = new LocationAddress();

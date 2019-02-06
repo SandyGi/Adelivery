@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -16,7 +17,6 @@ import com.anywhere.adelivery.AdeliveryApplication
 import com.anywhere.adelivery.R
 import com.anywhere.adelivery.data.model.entity.Order
 import com.anywhere.adelivery.data.model.entity.Status
-import com.anywhere.adelivery.data.request.OrderListRequest
 import com.anywhere.adelivery.ui.activity.HomeActivity
 import com.anywhere.adelivery.ui.activity.ORDER_DETAIL_FRAGMENT
 import com.anywhere.adelivery.ui.activity.SCHEDULE_DELIVERY_FRAGMENT
@@ -37,6 +37,7 @@ class MyOrderFragment : DaggerFragment() {
     private lateinit var orderListViewModel: OrderListViewModel
 
     private var homeActivity = HomeActivity()
+    private var dialog: ProgressDialog? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -52,11 +53,22 @@ class MyOrderFragment : DaggerFragment() {
 
         orderListViewModel = ViewModelProviders.of(this, viewModelFactory).get(OrderListViewModel::class.java)
         observeProductDeliveryStatus(view)
+        view.imgLogo.visibility =View.GONE
+        view.txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
+        dialog = ProgressDialog(activity, R.style.MyTheme)
+        dialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+//        dialog!!.setTitle("Loading")
+        dialog!!.setMessage("Loading. Please wait...")
+        dialog!!.setIndeterminate(true)
+        dialog!!.setCanceledOnTouchOutside(false)
+        dialog!!.show()
+
         orderListViewModel.getOrderList(AdeliveryApplication.prefHelper!!.userId)
         view.fabScheduleDelivery.setOnClickListener {
             homeActivity.displaySelectedScreen(SCHEDULE_DELIVERY_FRAGMENT, null)
         }
 //        setOrderList(view)
+
         return view
     }
 
@@ -76,7 +88,7 @@ class MyOrderFragment : DaggerFragment() {
                     get() = R.layout.my_order_list
 
                 override fun onBindData(model: Order, position: Int, dataBinding: View) {
-                    dataBinding.txtSNO.text = "${position+1}. "
+                    dataBinding.txtSNO.text = "${position + 1}. "
                     dataBinding.txtOrderMobileNumber.text = model.orderId
                     dataBinding.txtOrderStatus.text = model.status
                 }
@@ -92,12 +104,12 @@ class MyOrderFragment : DaggerFragment() {
 
     private fun observeProductDeliveryStatus(view: View) {
         orderListViewModel.response.observe(this, Observer { response ->
-
             if (response != null && response.status == Status.SUCCESS) {
                 setOrderList(view, response.data!!.data.orderList)
             } else {
                 Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
+            dialog!!.dismiss()
         })
     }
 

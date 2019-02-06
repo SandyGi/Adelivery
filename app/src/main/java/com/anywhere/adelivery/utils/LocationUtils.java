@@ -97,11 +97,11 @@ public class LocationUtils implements PermissionCallback {
         // inexact. You may not receive updates at all if no location sources are available, or
         // you may receive them slower than requested. You may also receive updates faster than
         // requested if other applications are requesting location at a faster interval.
-        mLocationRequest.setInterval(Constants.UPDATE_INTERVAL_IN_MILLISECONDS);
+//        mLocationRequest.setInterval(Constants.UPDATE_INTERVAL_IN_MILLISECONDS);
 
         // Sets the fastest rate for active location updates. This interval is exact, and your
         // application will never receive updates faster than this value.
-        mLocationRequest.setFastestInterval(Constants.FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
+//        mLocationRequest.setFastestInterval(Constants.FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
 
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }

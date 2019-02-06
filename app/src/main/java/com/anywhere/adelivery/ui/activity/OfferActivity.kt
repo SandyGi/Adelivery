@@ -1,13 +1,17 @@
 package com.anywhere.adelivery.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AlertDialog
+import android.text.Html
+import android.text.Spanned
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +44,7 @@ class OfferActivity : DaggerAppCompatActivity() {
     private lateinit var existingUserViewModel: ExistingUserViewModel
 
     var userId: String? = null
-
+    private var dialog: ProgressDialog? = null
 
     var customization = Customization()
     private var currentPage = 0
@@ -50,15 +54,22 @@ class OfferActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_offer)
 
         userId = AdeliveryApplication.prefHelper!!.userId
-
+        txtFreeDelivery.text = resources.getString(R.string.str_first_delivery_free_n_for_you).toSpanned()
         offerViewModel = ViewModelProviders.of(this, viewModelFactory).get(OfferViewModel::class.java)
         existingUserViewModel = ViewModelProviders.of(this, viewModelFactory).get(ExistingUserViewModel::class.java)
+        dialog = ProgressDialog(this, R.style.MyTheme)
+        dialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        dialog!!.setTitle("Loading");
+        dialog!!.setMessage("Loading. Please wait...")
+        dialog!!.isIndeterminate = true
+        dialog!!.setCanceledOnTouchOutside(false)
         init()
     }
 
     @SuppressLint("InflateParams")
     private fun init() {
         observeOfferLoadingStatus()
+        dialog!!.show()
         offerViewModel.loadData()
 
         val density = resources.displayMetrics.density
@@ -100,6 +111,7 @@ class OfferActivity : DaggerAppCompatActivity() {
                 if (!view.userInputDialog.text.equals("") && view.userInputDialog.length() == 10) {
                     observeExistingUserStatus(view)
                     existingUserViewModel.getExistingUser(view.userInputDialog.text.toString())
+                    dialog!!.show()
                 } else {
                     Toast.makeText(this, "Please enter valid mobile number", Toast.LENGTH_SHORT).show()
                 }
@@ -137,6 +149,7 @@ class OfferActivity : DaggerAppCompatActivity() {
                         Log.e("get users error", response.error.toString())
                     }
                 }
+                dialog!!.dismiss()
             })
     }
 
@@ -157,6 +170,14 @@ class OfferActivity : DaggerAppCompatActivity() {
                 Toast.makeText(this, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    fun String.toSpanned(): Spanned {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            @Suppress("DEPRECATION")
+            return Html.fromHtml(this)
+        }
     }
 }
 

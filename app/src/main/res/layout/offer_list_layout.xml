@@ -15,6 +15,7 @@
             android:textSize="18sp"
             android:maxLines="5"
             android:padding="8dp"
+            android:gravity="center_horizontal"
             android:minLines="5"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"

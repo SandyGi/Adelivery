@@ -1,5 +1,6 @@
 package com.anywhere.adelivery.ui.fragment
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
@@ -25,7 +26,7 @@ class ProfileFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var userDetailViewModel: UserDetailViewModel
     private var activityContext = HomeActivity()
-
+    private var dialog: ProgressDialog? = null
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         this.activityContext = context as HomeActivity
@@ -40,6 +41,15 @@ class ProfileFragment : DaggerFragment() {
         userDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserDetailViewModel::class.java)
 
         observeOrderDetailStatus(view)
+        view.imgLogo.visibility =View.GONE
+        view.txtMobileNumber.text = AdeliveryApplication.prefHelper!!.userId
+        dialog = ProgressDialog(activity, R.style.MyTheme)
+        dialog!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+//        dialog!!.setTitle("Loading")
+        dialog!!.setMessage("Loading. Please wait...")
+        dialog!!.setIndeterminate(true)
+        dialog!!.setCanceledOnTouchOutside(false)
+        dialog!!.show()
         userDetailViewModel.getUserDetail(AdeliveryApplication.prefHelper!!.userId)
         return view
     }
@@ -47,7 +57,6 @@ class ProfileFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity!!.title = activity!!.getString(R.string.str_my_detail)
-
     }
 
     private fun observeOrderDetailStatus(view: View) {
@@ -61,6 +70,7 @@ class ProfileFragment : DaggerFragment() {
             } else {
                 Toast.makeText(activity, "Server Side Error", Toast.LENGTH_SHORT).show()
             }
+            dialog!!.dismiss()
         })
     }
 }
